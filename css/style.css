@@ -73,9 +73,10 @@ button { font-family: inherit; cursor: pointer; }
 /* ===== 品牌背景区 ===== */
 .brand-hero {
     position: relative;
-    height: 45vh;
-    min-height: 280px;
-    background: url('../images/lv-bg.jpg') center/contain no-repeat; background-color: #000;
+    height: 100vh;
+    min-height: 100vh;
+    background: url('../images/lv-bg.jpg') center/cover no-repeat;
+    background-color: #000;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -83,7 +84,7 @@ button { font-family: inherit; cursor: pointer; }
 .brand-overlay {
     position: absolute;
     inset: 0;
-    background: rgba(0, 0, 0, 0.55);
+    background: rgba(0, 0, 0, 0.25);
 }
 .brand-content {
     position: relative;
@@ -92,11 +93,12 @@ button { font-family: inherit; cursor: pointer; }
 }
 .brand-logo { display: none; }
 .brand-name {
-    font-size: 36px;
-    font-weight: 300;
-    letter-spacing: 0.06em;
+    font-size: 42px;
+    font-weight: 200;
+    letter-spacing: 0.04em;
     color: #FFFFFF;
     text-transform: uppercase;
+    text-shadow: 0 2px 20px rgba(0,0,0,0.3);
 }
 
 /* ===== 分类导航 ===== */
@@ -556,14 +558,15 @@ button { font-family: inherit; cursor: pointer; }
     .products-grid { gap: 12px; }
     .product-name { font-size: 14px; }
     .product-price { font-size: 15px; }
-    .brand-hero { height: 55vh; min-height: 380px; }
+    .brand-hero { height: 100vh; min-height: 100vh; }
     .brand-logo { display: none; }
     .brand-name {
-    font-size: 36px;
-    font-weight: 300;
-    letter-spacing: 0.06em;
+    font-size: 42px;
+    font-weight: 200;
+    letter-spacing: 0.04em;
     color: #FFFFFF;
     text-transform: uppercase;
+    text-shadow: 0 2px 20px rgba(0,0,0,0.3);
 }
     .cat-tab { padding: 13px 18px; font-size: 13px; }
     .cart-sidebar { width: 400px; }
@@ -574,7 +577,7 @@ button { font-family: inherit; cursor: pointer; }
     .container { max-width: 960px; }
     .products-grid { grid-template-columns: repeat(3, 1fr); gap: 16px; }
     .product-name { font-size: 15px; }
-    .brand-hero { height: 65vh; }
+    .brand-hero { height: 100vh; }
     .checkout-grid { display: grid; grid-template-columns: 1fr 340px; gap: 40px; align-items: start; }
     .form-row { flex-direction: row; }
     .summary-card { position: sticky; top: 80px; }
