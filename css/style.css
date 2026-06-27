@@ -53,10 +53,27 @@ button { font-family: inherit; cursor: pointer; }
     width: 100%;
 }
 
-.logo {
-    font-size: 26px;
+.logo-area {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.logo-img {
+    width: 42px;
+    height: 42px;
+    object-fit: contain;
+    border-radius: 50%;
+}
+
+.logo-text {
+    font-size: 20px;
     font-weight: 700;
-    letter-spacing: 0.08em;
+    letter-spacing: 0.12em;
     color: var(--black);
 }
 
@@ -480,7 +497,29 @@ button { font-family: inherit; cursor: pointer; }
     .product-price { font-size: 13px; }
     .btn-add-cart { padding: 6px 12px; font-size: 11px; }
     .header { height: 52px; }
-    .logo { font-size: 22px; }
+    .logo-area {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.logo-img {
+    width: 42px;
+    height: 42px;
+    object-fit: contain;
+    border-radius: 50%;
+}
+
+.logo-text {
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    color: var(--black);
+}
     .category-bar { top: 52px; }
     .footer-content { flex-wrap: wrap; text-align: center; }
 }
