@@ -15,7 +15,7 @@ html { scroll-behavior: smooth; }
 body {
     font-family: 'Noto Sans SC', -apple-system, 'Helvetica Neue', sans-serif;
     color: var(--black);
-        background: #fff;
+        background: url('../images/lv-bg.jpg') center/auto auto fixed no-repeat;
     background-color: #000;
     line-height: 1.5;
     font-size: 14px;
@@ -26,18 +26,7 @@ body {
 }
 
 
-/* ===== 模特横幅 ===== */
-.hero-banner {
-    width: 100%;
-    position: relative;
-}
 
-.hero-img {
-    width: 100%;
-    height: auto;
-    display: block;
-    object-fit: contain;
-}
 
 
 a { text-decoration: none; color: inherit; }
