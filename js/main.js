@@ -40,6 +40,14 @@ function renderCategories() {
     });
 }
 
+// ===== 商品图片 HTML =====
+function productImageHTML(p) {
+    if (p.image) {
+        return `<img src="${p.image}" alt="${p.name}" class="product-img" loading="lazy" onerror="this.style.display='none';this.parentElement.textContent='${p.emoji}'">`;
+    }
+    return p.emoji;
+}
+
 // ===== 渲染商品列表 =====
 function renderProducts(category) {
     const filtered = category === "all" ? products : products.filter(p => p.category === category);
@@ -49,7 +57,7 @@ function renderProducts(category) {
         return `
         <div class="product-card">
             <div class="product-image">
-                ${p.emoji}
+                ${productImageHTML(p)}
                 ${p.tag ? `<span class="product-tag">${p.tag}</span>` : ""}
             </div>
             <div class="product-body">
@@ -121,6 +129,14 @@ function updateCartUI() {
     renderCartItems();
 }
 
+// ===== 购物车商品图片 HTML =====
+function cartImageHTML(p) {
+    if (p.image) {
+        return `<img src="${p.image}" alt="${p.name}" class="cart-item-img" loading="lazy" onerror="this.style.display='none';this.parentElement.textContent='${p.emoji}'">`;
+    }
+    return p.emoji;
+}
+
 function renderCartItems() {
     if (cart.length === 0) {
         cartItems.innerHTML = "<p class=\"cart-empty\">购物车是空的</p>";
@@ -141,7 +157,7 @@ function renderCartItems() {
         if (!product) return "";
         return `
         <div class="cart-item">
-            <div class="cart-item-image">${product.emoji}</div>
+            <div class="cart-item-image">${cartImageHTML(product)}</div>
             <div class="cart-item-info">
                 <div class="cart-item-name">${product.name}</div>
                 <div class="cart-item-price">¥${(product.price * c.quantity).toLocaleString()}</div>

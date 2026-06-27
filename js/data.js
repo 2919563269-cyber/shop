@@ -1,4 +1,4 @@
-// 商品数据
+﻿// 商品数据
 const products = [
     {
         id: 1,
@@ -120,50 +120,109 @@ const products = [
         desc: '头层牛皮，手工缝制，复古做旧',
         tag: '',
     },
-
     {
         id: 13,
-        name: '高版本轻奢克罗心牛仔裤',
+        name: '高版本轻奢克罗心牛仔裤（衣服）',
         category: '服饰',
         price: 79,
         originalPrice: 299,
         emoji: '👖',
+        image: 'images/微信图片_20260627171551_42_2.jpg',
         desc: '十字架贴布印花，男女同款，广州现货秒发',
         tag: '新品',
     },
     {
         id: 14,
-        name: '高版本轻奢克罗心牛仔裤',
+        name: '高版本轻奢克罗心牛仔裤（裤子）',
         category: '裤子',
         price: 79,
         originalPrice: 299,
         emoji: '👖',
+        image: 'images/微信图片_20260627171552_43_2.jpg',
         desc: '十字架贴布印花，男女同款，广州现货秒发',
         tag: '新品',
-    },];
+    },
+    {
+        id: 15,
+        name: '新款潮流T恤',
+        category: '服饰',
+        price: 89,
+        originalPrice: 199,
+        emoji: '👕',
+        image: 'images/微信图片_20260627171552_44_2.jpg',
+        desc: '纯棉面料，宽松版型，多色可选',
+        tag: '新品',
+    },
+    {
+        id: 16,
+        name: '韩版宽松卫衣',
+        category: '服饰',
+        price: 109,
+        originalPrice: 259,
+        emoji: '🧥',
+        image: 'images/微信图片_20260627171553_45_2.jpg',
+        desc: '加绒保暖，街头潮流风，男女同款',
+        tag: '',
+    },
+    {
+        id: 17,
+        name: '休闲运动裤',
+        category: '裤子',
+        price: 69,
+        originalPrice: 159,
+        emoji: '👖',
+        image: 'images/微信图片_20260627171554_46_2.jpg',
+        desc: '弹力面料，修身显瘦，运动休闲两穿',
+        tag: '热卖',
+    },
+    {
+        id: 18,
+        name: '时尚连帽卫衣',
+        category: '服饰',
+        price: 119,
+        originalPrice: 279,
+        emoji: '🧥',
+        image: 'images/微信图片_20260627171555_47_2.jpg',
+        desc: '纯色简约，情侣款，秋冬必备',
+        tag: '',
+    },
+    {
+        id: 19,
+        name: '夏季薄款短裤',
+        category: '裤子',
+        price: 59,
+        originalPrice: 129,
+        emoji: '🩳',
+        image: 'images/微信图片_20260627171559_48_2.jpg',
+        desc: '冰丝面料，透气速干，运动休闲',
+        tag: '新品',
+    },
+    {
+        id: 20,
+        name: '潮流印花卫衣',
+        category: '服饰',
+        price: 129,
+        originalPrice: 289,
+        emoji: '👕',
+        image: 'images/微信图片_20260627171602_49_2.jpg',
+        desc: '3D数码印花，不掉色不缩水',
+        tag: '热卖',
+    },
+    {
+        id: 21,
+        name: '工装束脚裤',
+        category: '裤子',
+        price: 85,
+        originalPrice: 189,
+        emoji: '👖',
+        image: 'images/微信图片_20260627171604_50_2.jpg',
+        desc: '多口袋设计，军工风，百搭神器',
+        tag: '',
+    },
+];
 
 // 获取所有分类
 function getCategories() {
     const cats = new Set(products.map(p => p.category));
-    return ['all', ...Array.from(cats)
-    {
-        id: 13,
-        name: '高版本轻奢克罗心牛仔裤',
-        category: '服饰',
-        price: 79,
-        originalPrice: 299,
-        emoji: '👖',
-        desc: '十字架贴布印花，男女同款，广州现货秒发',
-        tag: '新品',
-    },
-    {
-        id: 14,
-        name: '高版本轻奢克罗心牛仔裤',
-        category: '裤子',
-        price: 79,
-        originalPrice: 299,
-        emoji: '👖',
-        desc: '十字架贴布印花，男女同款，广州现货秒发',
-        tag: '新品',
-    },];
+    return ['all', ...Array.from(cats)];
 }
