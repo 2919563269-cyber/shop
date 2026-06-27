@@ -3,69 +3,65 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NJK - 品质生活从这里开始</title>
+    <title>NJK</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!-- 顶部导航 -->
     <header class="header">
         <div class="container">
-            <a href="#" class="logo">N<span>JK</span></a>
-            <div class="header-actions">
-                <button class="btn-icon cart-btn" onclick="toggleCart()">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/>
-                        <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
-                    </svg>
-                    <span class="cart-count" id="cartCount">0</span>
-                </button>
-            </div>
+            <a href="#" class="logo">NJK</a>
+            <button class="btn-icon cart-btn" onclick="toggleCart()">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/>
+                    <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
+                </svg>
+                <span class="cart-count" id="cartCount">0</span>
+            </button>
         </div>
     </header>
 
-    <!-- 购物车侧边栏 -->
     <div class="cart-overlay" id="cartOverlay" onclick="toggleCart()"></div>
     <div class="cart-sidebar" id="cartSidebar">
         <div class="cart-header">
-            <h3>购物车</h3>
+            <h3>购物袋</h3>
             <button class="btn-close" onclick="toggleCart()">&times;</button>
         </div>
         <div class="cart-items" id="cartItems">
-            <p class="cart-empty">购物车是空的</p>
+            <p class="cart-empty">购物袋是空的</p>
         </div>
         <div class="cart-footer" id="cartFooter" style="display:none">
             <div class="cart-total">
                 <span>合计</span>
                 <span class="total-price" id="cartTotal">¥0.00</span>
             </div>
-            <button class="btn btn-primary btn-full" onclick="checkout()">立即结算</button>
+            <button class="btn btn-dark btn-full" onclick="checkout()">结算</button>
         </div>
     </div>
 
-    <!-- 分类导航 -->
-    <section class="category-bar" id="categoryBar">
+    <section class="category-bar">
         <div class="container">
             <div class="category-tabs" id="categoryTabs"></div>
         </div>
     </section>
 
-    <!-- 商品列表 -->
-    <section class="products" id="products">
+    <section class="products">
         <div class="container">
             <div class="products-grid" id="productsGrid"></div>
         </div>
     </section>
 
-    <!-- 极简页脚 -->
     <footer class="footer">
         <div class="container">
-            <p>&copy; 2026 NJK. 版权所有. 电话：18688581472</p>
+            <div class="footer-content">
+                <span class="footer-brand">NJK</span>
+                <span class="footer-divider">—</span>
+                <span>客服微信：njknjk22002</span>
+            </div>
         </div>
     </footer>
 
-    <!-- Toast 提示 -->
     <div class="toast" id="toast"></div>
 
     <script src="js/data.js"></script>
