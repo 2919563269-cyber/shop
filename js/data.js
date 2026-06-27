@@ -1,4 +1,4 @@
-﻿// 商品数据
+// 商品数据
 const products = [
     {
         id: 1,
@@ -7,7 +7,7 @@ const products = [
         price: 299,
         originalPrice: 499,
         emoji: '🎧',
-        desc: '主动降噪，40小时续航，Hi-Fi音质',
+        desc: '主动降噪，40小时续航，高保真音质',
         tag: '热卖',
     },
     {
@@ -37,7 +37,7 @@ const products = [
         price: 189,
         originalPrice: 329,
         emoji: '💡',
-        desc: '三档调光，护眼LED，极简设计',
+        desc: '三档调光，护眼LED光源，极简设计',
         tag: '',
     },
     {
@@ -52,7 +52,7 @@ const products = [
     },
     {
         id: 6,
-        name: '便携充电宝 20000mAh',
+        name: '便携充电宝 2万毫安',
         category: '数码',
         price: 129,
         originalPrice: 199,
@@ -67,7 +67,7 @@ const products = [
         price: 89,
         originalPrice: 159,
         emoji: '🏺',
-        desc: '高温烧制，哑光釉面，ins风摆件',
+        desc: '高温烧制，哑光釉面，网红风摆件',
         tag: '新品',
     },
     {
@@ -82,12 +82,12 @@ const products = [
     },
     {
         id: 9,
-        name: '机械键盘 RGB',
+        name: '机械键盘 炫彩背光',
         category: '数码',
         price: 249,
         originalPrice: 429,
         emoji: '⌨️',
-        desc: 'Cherry轴体，全键热插拔，PBT键帽',
+        desc: '樱桃轴体，全键热插拔，PBT材质键帽',
         tag: '',
     },
     {
@@ -107,7 +107,7 @@ const products = [
         price: 599,
         originalPrice: 899,
         emoji: '⌚',
-        desc: '血氧心率监测，14天续航，IP68防水',
+        desc: '血氧心率监测，14天续航，IP68级防水',
         tag: '新品',
     },
     {

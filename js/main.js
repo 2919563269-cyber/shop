@@ -175,7 +175,7 @@ function checkout() {
         const product = products.find(p => p.id === c.id);
         return sum + (product ? product.price * c.quantity : 0);
     }, 0);
-    showToast("订单已提交！总金额 ¥" + total.toLocaleString() + "，我们会尽快联系您确认", "success");
+    showToast("订单已提交！合计 ¥" + total.toLocaleString() + "，我们会尽快联系您确认", "success");
     cart = [];
     saveCart();
     updateCartUI();
