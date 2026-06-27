@@ -22,6 +22,14 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;-webkit-ap
 a{text-decoration:none;color:inherit}
 
 /* ===== 模特图 ===== */
+/* ===== 模特图文字 ===== */
+.hero{display:flex;align-items:center;justify-content:center}
+.hero-text{text-align:center;z-index:1;padding:0 32px}
+.hero-title{font-size:28px;font-weight:700;color:#fff;letter-spacing:.15em;margin-bottom:12px;text-shadow:0 2px 8px rgba(0,0,0,.3)}
+.hero-sub{font-size:13px;font-weight:300;color:rgba(255,255,255,.85);letter-spacing:.2em;margin-bottom:20px;text-transform:uppercase}
+.hero-desc{font-size:14px;font-weight:300;color:rgba(255,255,255,.75);line-height:1.8;letter-spacing:.04em;margin-bottom:32px}
+.hero-btn{display:inline-block;padding:14px 40px;border:1px solid rgba(255,255,255,.6);color:#fff;font-size:13px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;transition:all .3s}
+.hero-btn:active{background:rgba(255,255,255,.15);border-color:#fff}
 .hero{
   width:100%;
   height:100vh;height:100svh;
@@ -226,7 +234,14 @@ a{text-decoration:none;color:inherit}
 <body>
 
 <!-- 模特图 -->
-<section class="hero"></section>
+<section class="hero">
+  <div class="hero-text">
+    <h1 class="hero-title">LIZHIGANG</h1>
+    <p class="hero-sub">Designed For Confidence</p>
+    <p class="hero-desc">简约，不代表平凡。<br>每一件单品，都为你的气质而生。</p>
+    <a href="#products" class="hero-btn">Shop Now</a>
+  </div>
+</section>
 
 <!-- 导航 -->
 <header class="header">
@@ -257,7 +272,7 @@ a{text-decoration:none;color:inherit}
 <nav class="cats"><div class="cats-row" id="categoryTabs"></div></nav>
 
 <!-- 商品 -->
-<section class="products"><div class="grid" id="productsGrid"></div></section>
+<section class="products" id="products"><div class="grid" id="productsGrid"></div></section>
 
 <!-- 底部 -->
 <footer class="footer">客服微信：njknjk22002</footer>
