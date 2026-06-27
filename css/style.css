@@ -15,7 +15,8 @@ html { scroll-behavior: smooth; }
 body {
     font-family: 'Noto Sans SC', -apple-system, 'Helvetica Neue', sans-serif;
     color: var(--black);
-    background: var(--white);
+    background: url('../images/lv-bg.jpg') center/cover fixed no-repeat;
+    background-color: #000;
     line-height: 1.5;
     font-size: 14px;
     -webkit-font-smoothing: antialiased;
@@ -35,12 +36,16 @@ button { font-family: inherit; cursor: pointer; }
     position: sticky;
     top: 0;
     z-index: 1000;
-    background: var(--white);
+    background: rgba(0,0,0,0.6);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
     height: 56px;
     display: flex;
     align-items: center;
-    border-bottom: 1px solid var(--gray-200);
+    border-bottom: 1px solid rgba(255,255,255,0.1);
 }
+.header .logo-text { color: #fff; }
+.header .cart-btn { color: #fff; }
 .header .container {
     display: flex;
     align-items: center;
@@ -70,45 +75,22 @@ button { font-family: inherit; cursor: pointer; }
     justify-content: center;
 }
 
-/* ===== 品牌背景区 ===== */
-.brand-hero {
-    position: relative;
-    height: 100vh;
-    min-height: 100vh;
-    background: url('../images/lv-bg.jpg') center/cover no-repeat;
-    background-color: #000;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-.brand-overlay {
-    position: absolute;
-    inset: 0;
-    background: rgba(0, 0, 0, 0.25);
-}
-.brand-content {
-    position: relative;
-    z-index: 1;
-    text-align: center;
-}
-.brand-logo { display: none; }
-.brand-name {
-    font-size: 42px;
-    font-weight: 200;
-    letter-spacing: 0.04em;
-    color: #FFFFFF;
-    text-transform: uppercase;
-    text-shadow: 0 2px 20px rgba(0,0,0,0.3);
-}
+/* brand-hero removed - body is now the background */
 
 /* ===== 分类导航 ===== */
 .category-bar {
     position: sticky;
     top: 56px;
     z-index: 999;
-    background: var(--white);
+    background: rgba(0,0,0,0.5);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
     border-bottom: none;
 }
+.cat-tab { color: rgba(255,255,255,0.7); }
+.cat-tab:hover { color: #fff; }
+.cat-tab.active { color: #fff; }
+.cat-tab::after { background: #fff; }
 .category-tabs {
     display: flex;
     gap: 0;
@@ -146,19 +128,26 @@ button { font-family: inherit; cursor: pointer; }
 .cat-tab.active::after { transform: scaleX(1); }
 
 /* ===== 商品列表 ===== */
-.products { padding: 4px 0 60px; min-height: 40vh; }
+.products { padding: 8px 0 60px; min-height: 60vh; }
 
 .products-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 8px;
+    gap: 6px;
 }
 
 /* ===== 商品卡片 ===== */
 .product-card {
-    background: var(--white);
+    background: rgba(0,0,0,0.45);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    border-radius: 2px;
     transition: opacity 0.3s ease;
 }
+.product-card .product-name { color: #fff; }
+.product-card .product-desc { color: rgba(255,255,255,0.7); }
+.product-card .product-price { color: #fff; }
+.product-card .product-original { color: rgba(255,255,255,0.5); }
 .product-card:hover { opacity: 0.85; }
 
 .product-image {
@@ -181,8 +170,8 @@ button { font-family: inherit; cursor: pointer; }
 .product-tag {
     position: absolute;
     top: 8px; left: 8px;
-    background: var(--black);
-    color: var(--white);
+    background: rgba(255,255,255,0.9);
+    color: #000;
     font-size: 10px; font-weight: 500;
     padding: 3px 10px;
     letter-spacing: 0.05em;
@@ -396,7 +385,7 @@ button { font-family: inherit; cursor: pointer; }
     letter-spacing: 0.04em;
     text-align: center;
 }
-.footer-brand { font-weight: 600; color: var(--black); font-size: 13px; }
+.footer-brand { font-weight: 600; color: #fff; font-size: 13px; }
 .footer-divider { display: none; }
 
 /* ===== Toast ===== */
@@ -558,16 +547,6 @@ button { font-family: inherit; cursor: pointer; }
     .products-grid { gap: 12px; }
     .product-name { font-size: 14px; }
     .product-price { font-size: 15px; }
-    .brand-hero { height: 100vh; min-height: 100vh; }
-    .brand-logo { display: none; }
-    .brand-name {
-    font-size: 42px;
-    font-weight: 200;
-    letter-spacing: 0.04em;
-    color: #FFFFFF;
-    text-transform: uppercase;
-    text-shadow: 0 2px 20px rgba(0,0,0,0.3);
-}
     .cat-tab { padding: 14px 20px; font-size: 15px; }
     .cart-sidebar { width: 400px; }
 }
@@ -577,7 +556,6 @@ button { font-family: inherit; cursor: pointer; }
     .container { max-width: 960px; }
     .products-grid { grid-template-columns: repeat(3, 1fr); gap: 16px; }
     .product-name { font-size: 15px; }
-    .brand-hero { height: 100vh; }
     .checkout-grid { display: grid; grid-template-columns: 1fr 340px; gap: 40px; align-items: start; }
     .form-row { flex-direction: row; }
     .summary-card { position: sticky; top: 80px; }
