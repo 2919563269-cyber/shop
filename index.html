@@ -1,309 +1,261 @@
 ﻿<!DOCTYPE html>
-<html lang="zh-CN">
+<html lang=""zh-CN"">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-<title>LIZHIGANG</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
-<style>
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{-webkit-text-size-adjust:100%}
-body{
-    font-family:"Noto Sans SC",-apple-system,"Helvetica Neue",sans-serif;
-    font-size:14px;color:#1a1a1a;background:#fff;
-    -webkit-font-smoothing:antialiased;
-    letter-spacing:.02em;overflow-x:hidden;
-}
-img{max-width:100%;display:block;height:auto}
-button{font-family:inherit;cursor:pointer;border:none;background:none;-webkit-appearance:none;-webkit-tap-highlight-color:transparent}
-a{text-decoration:none;color:inherit}
-
-/* 模特大图 */
-.hero{width:100%;height:100vh;height:100svh;background:url("images/lv-bg.jpg") center/cover no-repeat;position:relative}
-.hero::after{content:"";position:absolute;inset:0;background:rgba(0,0,0,.25)}
-
-/* 顶部栏 */
-.header{
-    position:sticky;position:-webkit-sticky;top:0;z-index:100;
-    background:rgba(255,255,255,.95);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
-    height:54px;display:flex;align-items:center;border-bottom:1px solid #eee;
-}
-.header-inner{display:flex;align-items:center;justify-content:space-between;padding:0 12px;width:100%}
-.logo{display:flex;align-items:center;gap:8px}
-.logo img{width:32px;height:32px;border-radius:50%;object-fit:contain}
-.logo span{font-size:17px;font-weight:700;letter-spacing:.1em}
-.cart-wrap{position:relative;padding:4px}
-.cart-wrap svg{width:22px;height:22px}
-.cart-num{position:absolute;top:0;right:0;background:#1a1a1a;color:#fff;font-size:10px;font-weight:600;width:18px;height:18px;border-radius:50%;display:flex;align-items:center;justify-content:center}
-
-/* 分类栏 */
-.cats{
-    position:sticky;position:-webkit-sticky;top:54px;z-index:99;
-    background:#fff;border-bottom:1px solid #eee;
-}
-.cats-inner{display:flex;overflow-x:auto;padding:0 8px;-webkit-overflow-scrolling:touch;scrollbar-width:none}
-.cats-inner::-webkit-scrollbar{display:none}
-.cat-tab{flex-shrink:0;padding:12px 14px;font-size:14px;font-weight:500;color:#999;white-space:nowrap;position:relative;transition:color .2s}
-.cat-tab.active{color:#1a1a1a;font-weight:600}
-.cat-tab.active::after{content:"";position:absolute;bottom:0;left:14px;right:14px;height:2px;background:#1a1a1a}
-
-/* 商品网格 */
-.products{padding:8px;background:#fff;min-height:50vh}
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-
-/* 商品卡片 */
-.card{background:#fff}
-.card-img{aspect-ratio:3/4;background:#f5f5f5;position:relative;overflow:hidden}
-.card-img img{width:100%;height:100%;object-fit:cover}
-.card-tag{position:absolute;top:6px;left:6px;background:#1a1a1a;color:#fff;font-size:10px;padding:2px 7px}
-.card-info{padding:8px 2px 4px}
-.card-name{font-size:13px;font-weight:500;color:#111;line-height:1.4;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;margin-bottom:4px}
-.card-desc{font-size:11px;color:#666;display:-webkit-box;-webkit-line-clamp:1;-webkit-box-orient:vertical;overflow:hidden;margin-bottom:6px}
-.card-bottom{display:flex;align-items:center;justify-content:space-between}
-.card-price{font-size:15px;font-weight:700;color:#111}
-.card-price s{font-size:11px;font-weight:400;color:#999;margin-left:4px}
-.card-btn{padding:5px 10px;font-size:11px;font-weight:500;border:1px solid #111;color:#111;white-space:nowrap}
-.card-btn.in{background:#111;color:#fff}
-
-/* 底部 */
-.footer{background:#111;color:#fff;padding:20px 16px 30px;text-align:center;font-size:13px;letter-spacing:.04em}
-
-/* 购物车 */
-.cart-overlay{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:200;display:none}
-.cart-overlay.on{display:block}
-.cart-panel{position:fixed;top:0;right:-100%;width:85vw;max-width:380px;height:100vh;height:100svh;background:#fff;z-index:201;display:flex;flex-direction:column;transition:right .3s}
-.cart-panel.on{right:0}
-.cart-top{display:flex;justify-content:space-between;align-items:center;padding:16px;border-bottom:1px solid #eee}
-.cart-top h3{font-size:16px;font-weight:600}
-.cart-top button{font-size:22px;color:#999;padding:0}
-.cart-list{flex:1;overflow-y:auto;padding:16px;-webkit-overflow-scrolling:touch}
-.cart-list .empty{text-align:center;color:#999;padding-top:60px;font-size:14px}
-.cart-item{display:flex;gap:10px;padding:10px 0;border-bottom:1px solid #f0f0f0;align-items:flex-start}
-.cart-item-img{width:64px;height:86px;flex-shrink:0;background:#f5f5f5}
-.cart-item-img img{width:100%;height:100%;object-fit:cover}
-.cart-item-info{flex:1;min-width:0}
-.cart-item-name{font-size:12px;font-weight:500;color:#111;line-height:1.4;margin-bottom:4px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-.cart-item-price{font-size:14px;font-weight:600;color:#111;margin-bottom:4px}
-.cart-qty{display:flex;align-items:center;gap:6px}
-.cart-qty button{width:24px;height:24px;border:1px solid #ddd;font-size:14px;display:flex;align-items:center;justify-content:center}
-.cart-qty span{font-size:13px;min-width:20px;text-align:center}
-.cart-item-del{font-size:20px;color:#ccc;padding:2px}
-.cart-bottom{padding:16px;border-top:1px solid #eee}
-.cart-row{display:flex;justify-content:space-between;align-items:center;font-size:15px;margin-bottom:12px}
-.cart-row .price{font-size:18px;font-weight:700;color:#111}
-.cart-bottom>button{display:block;width:100%;padding:14px;background:#111;color:#fff;font-size:15px;font-weight:500;letter-spacing:.06em}
-
-/* toast */
-.toast{position:fixed;bottom:80px;left:50%;transform:translateX(-50%)translateY(20px);background:#111;color:#fff;padding:10px 24px;font-size:13px;border-radius:4px;z-index:300;opacity:0;transition:all .3s;pointer-events:none}
-.toast.show{opacity:1;transform:translateX(-50%)translateY(0)}
-
-/* 支付弹窗 */
-.pay-overlay{position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:500;display:none}
-.pay-overlay.on{display:block}
-.pay-box{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);background:#1a1a1a;border-radius:12px;z-index:501;width:90vw;max-width:360px;padding:24px 20px 20px;display:none}
-.pay-box.on{display:block}
-.pay-close{position:absolute;top:10px;right:14px;color:#999;font-size:24px;padding:0}
-.pay-title{font-size:20px;font-weight:600;color:#fff;text-align:center;margin-bottom:20px}
-.pay-tabs{display:flex;gap:10px;margin-bottom:20px}
-.pay-tab{flex:1;padding:10px;border:1px solid #333;border-radius:8px;color:#999;font-size:14px;font-weight:500;text-align:center;transition:all .2s}
-.pay-tab.on{border-color:#fff;color:#fff;background:rgba(255,255,255,.08)}
-.pay-qr{text-align:center;display:none}
-.pay-qr.on{display:block}
-.pay-qr .qr-img{display:inline-block;padding:14px;background:#fff;border-radius:12px;margin-bottom:10px}
-.pay-qr .qr-img img{width:180px;height:180px}
-.pay-qr .qr-label{font-size:15px;font-weight:600;color:#fff;margin-bottom:4px}
-.pay-qr .qr-hint{font-size:12px;color:#999;margin-bottom:4px}
-.pay-qr .qr-amount{font-size:26px;font-weight:700;color:#fff}
-.pay-note{text-align:center;padding-top:14px;border-top:1px solid #333;margin-top:4px}
-.pay-note p{font-size:12px;color:#999;line-height:1.8}
-
-/* 桌面居中 */
-@media(min-width:431px){
-    body{max-width:430px;margin:0 auto;box-shadow:0 0 30px rgba(0,0,0,.1)}
-}
-</style>
+    <meta charset=""UTF-8"">
+    <meta name=""viewport"" content=""width=device-width, initial-scale=1.0"">
+    <title>臻选好物 - 品质生活从这里开始</title>
+    <link rel=""stylesheet"" href=""css/style.css"">
+    <link rel=""preconnect"" href=""https://fonts.googleapis.com"">
+    <link href=""https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap"" rel=""stylesheet"">
 </head>
 <body>
+    <!-- 导航栏 -->
+    <header class=""header"">
+        <div class=""container"">
+            <a href=""#"" class=""logo"">臻选<span>好物</span></a>
+            <nav class=""nav"">
+                <a href=""#home"" class=""nav-link active"">首页</a>
+                <a href=""#products"" class=""nav-link"">全部商品</a>
+                <a href=""#about"" class=""nav-link"">关于我们</a>
+                <a href=""#contact"" class=""nav-link"">联系我们</a>
+            </nav>
+            <div class=""header-actions"">
+                <button class=""btn-icon cart-btn"" onclick=""toggleCart()"">
+                    <svg width=""22"" height=""22"" viewBox=""0 0 24 24"" fill=""none"" stroke=""currentColor"" stroke-width=""2"">
+                        <circle cx=""9"" cy=""21"" r=""1""/><circle cx=""20"" cy=""21"" r=""1""/>
+                        <path d=""M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6""/>
+                    </svg>
+                    <span class=""cart-count"" id=""cartCount"">0</span>
+                </button>
+                <button class=""btn-icon menu-toggle"" onclick=""toggleMobileMenu()"">
+                    <svg width=""24"" height=""24"" viewBox=""0 0 24 24"" fill=""none"" stroke=""currentColor"" stroke-width=""2"">
+                        <line x1=""3"" y1=""6"" x2=""21"" y2=""6""/><line x1=""3"" y1=""12"" x2=""21"" y2=""12""/><line x1=""3"" y1=""18"" x2=""21"" y2=""18""/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </header>
 
-<!-- 模特图 -->
-<section class="hero"></section>
+    <!-- 移动端菜单 -->
+    <div class=""mobile-menu"" id=""mobileMenu"">
+        <a href=""#home"" onclick=""closeMobileMenu()"">首页</a>
+        <a href=""#products"" onclick=""closeMobileMenu()"">全部商品</a>
+        <a href=""#about"" onclick=""closeMobileMenu()"">关于我们</a>
+        <a href=""#contact"" onclick=""closeMobileMenu()"">联系我们</a>
+    </div>
 
-<!-- 顶部 -->
-<header class="header">
-  <div class="header-inner">
-    <a class="logo" href="#">
-      <img src="images/logo.jpg" alt="LIZHIGANG">
-      <span>LIZHIGANG</span>
-    </a>
-    <button class="cart-wrap" onclick="toggleCart()">
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
-      <span class="cart-num" id="cartCount">0</span>
-    </button>
-  </div>
-</header>
+    <!-- 购物车侧边栏 -->
+    <div class=""cart-overlay"" id=""cartOverlay"" onclick=""toggleCart()""></div>
+    <div class=""cart-sidebar"" id=""cartSidebar"">
+        <div class=""cart-header"">
+            <h3>购物车</h3>
+            <button class=""btn-close"" onclick=""toggleCart()"">&times;</button>
+        </div>
+        <div class=""cart-items"" id=""cartItems"">
+            <p class=""cart-empty"">购物车是空的</p>
+        </div>
+        <div class=""cart-footer"" id=""cartFooter"" style=""display:none"">
+            <div class=""cart-total"">
+                <span>合计</span>
+                <span class=""total-price"" id=""cartTotal"">¥0.00</span>
+            </div>
+            <button class=""btn btn-primary btn-full"" onclick=""checkout()"">立即结算</button>
+        </div>
+    </div>
 
-<!-- 购物车 -->
-<div class="cart-overlay" id="cartOverlay" onclick="toggleCart()"></div>
-<div class="cart-panel" id="cartPanel">
-  <div class="cart-top"><h3>购物袋</h3><button onclick="toggleCart()">&times;</button></div>
-  <div class="cart-list" id="cartItems"><p class="empty">购物袋是空的</p></div>
-  <div class="cart-bottom" id="cartFooter" style="display:none">
-    <div class="cart-row"><span>合计</span><span class="price" id="cartTotal">¥0</span></div>
-    <button onclick="checkout()">结算</button>
-  </div>
-</div>
+    <!-- 首页 Hero -->
+    <section id=""home"" class=""hero"">
+        <div class=""hero-content"">
+            <h1 class=""hero-title"">品质生活<br>从这里开始</h1>
+            <p class=""hero-subtitle"">精选全球好物，用心服务每一位客户</p>
+            <div class=""hero-buttons"">
+                <a href=""#products"" class=""btn btn-primary"">立即选购</a>
+                <a href=""#about"" class=""btn btn-outline"">了解更多</a>
+            </div>
+        </div>
+        <div class=""hero-bg"">
+            <div class=""hero-shape shape-1""></div>
+            <div class=""hero-shape shape-2""></div>
+            <div class=""hero-shape shape-3""></div>
+        </div>
+    </section>
 
-<!-- 分类 -->
-<nav class="cats"><div class="cats-inner" id="categoryTabs"></div></nav>
+    <!-- 特色亮点 -->
+    <section class=""features"">
+        <div class=""container"">
+            <div class=""features-grid"">
+                <div class=""feature-card"">
+                    <div class=""feature-icon"">🚚</div>
+                    <h4>全国包邮</h4>
+                    <p>订单满99元即享全国免费配送</p>
+                </div>
+                <div class=""feature-card"">
+                    <div class=""feature-icon"">🔄</div>
+                    <h4>7天无理由退换</h4>
+                    <p>不满意随时退，购物零风险</p>
+                </div>
+                <div class=""feature-card"">
+                    <div class=""feature-icon"">🛡️</div>
+                    <h4>正品保障</h4>
+                    <p>100%正品承诺，假一赔十</p>
+                </div>
+                <div class=""feature-card"">
+                    <div class=""feature-icon"">💬</div>
+                    <h4>专属客服</h4>
+                    <p>一对一贴心服务，随时在线</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-<!-- 商品 -->
-<section class="products"><div class="grid" id="productsGrid"></div></section>
+    <!-- 商品分类导航 -->
+    <section class=""categories"">
+        <div class=""container"">
+            <h2 class=""section-title"">商品分类</h2>
+            <div class=""category-tabs"" id=""categoryTabs"">
+                <button class=""cat-tab active"" data-category=""all"">全部</button>
+            </div>
+        </div>
+    </section>
 
-<!-- 底部 -->
-<footer class="footer">客服微信：njknjk22002</footer>
+    <!-- 商品列表 -->
+    <section id=""products"" class=""products"">
+        <div class=""container"">
+            <h2 class=""section-title"">热门推荐</h2>
+            <div class=""products-grid"" id=""productsGrid"">
+                <!-- 动态生成 -->
+            </div>
+        </div>
+    </section>
 
-<div class="toast" id="toast"></div>
+    <!-- 关于我们 -->
+    <section id=""about"" class=""about"">
+        <div class=""container"">
+            <div class=""about-content"">
+                <div class=""about-text"">
+                    <h2 class=""section-title"">关于臻选好物</h2>
+                    <p>臻选好物成立于2024年，致力于为消费者提供高品质、高性价比的优质商品。我们严格把控每一个环节，从选品、采购到物流配送，确保每一位客户都能享受到最好的购物体验。</p>
+                    <p>我们的团队由一群热爱生活、追求品质的年轻人组成，我们相信好的产品值得被更多人发现和使用。</p>
+                    <div class=""about-stats"">
+                        <div class=""stat"">
+                            <span class=""stat-number"">10,000+</span>
+                            <span class=""stat-label"">满意客户</span>
+                        </div>
+                        <div class=""stat"">
+                            <span class=""stat-number"">500+</span>
+                            <span class=""stat-label"">精选商品</span>
+                        </div>
+                        <div class=""stat"">
+                            <span class=""stat-number"">99.8%</span>
+                            <span class=""stat-label"">好评率</span>
+                        </div>
+                    </div>
+                </div>
+                <div class=""about-image"">
+                    <div class=""about-img-placeholder"">
+                        <span>🌟</span>
+                        <p>品质生活</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-<script>
-// === 商品数据 ===
-const products = [
-  // 卫衣
-  {id:10,name:"Lvv轻奢连帽卫衣",category:"卫衣",price:129,orig:349,img:"images/product_23.jpg",desc:"顶级版本轻奢系列，连帽外套卫衣",tag:"热卖"},
-  // 外套
-  {id:7,name:"潮牌轻奢牛仔外套",category:"外套",price:228,orig:599,img:"images/product_15.jpg",desc:"高版本潮牌轻奢上衣，独家款式",tag:"新品"},
-  {id:8,name:"连帽夹克外套",category:"外套",price:99,orig:299,img:"images/product_16.jpg",desc:"独家版本高质量高品质百搭时尚",tag:"热卖"},
-  {id:9,name:"Lvv拉链棒球开衫外套",category:"外套",price:138.8,orig:369,img:"images/product_17.jpg",desc:"新版顶级版本万针刺绣外套",tag:"热卖"},
-  {id:17,name:"克罗心破洞毛衣",category:"外套",price:89,orig:259,img:"images/product_18.jpg",desc:"新款高版本十字架皮标刺绣",tag:"新品"},
-  {id:24,name:"普拉达假两件针织衫",category:"外套",price:129,orig:349,img:"images/product_19.jpg",desc:"市面最高版本羊毛衬衫拼接",tag:"热卖"},
-  {id:27,name:"满印连帽加棉外套",category:"外套",price:179,orig:469,img:"images/product_20.jpg",desc:"秋季轻奢新品高品质现货",tag:"新品"},
-  {id:28,name:"普拉达高版本鹿皮外套",category:"外套",price:279,orig:699,img:"images/product_21.jpg",desc:"三标齐全独家版本高品质",tag:"新品"},
-  {id:29,name:"大鹅排骨羽绒服",category:"外套",price:269,orig:699,img:"images/product_22.jpg",desc:"秋季轻奢新品高品质现货",tag:"新品"},
-  // 裤子
-  {id:23,name:"克罗心十字架贴布蓝牛仔裤",category:"裤子",price:89,orig:249,img:"images/product_12.jpg",desc:"新款高版本轻奢男女同款广州现货",tag:"新品"},
-  {id:2,name:"克罗心复古黑色牛仔裤",category:"裤子",price:69,orig:199,img:"images/product_2.jpg",desc:"独家版本克罗心十字架男士休闲",tag:"热卖"},
-  {id:3,name:"美式高街牛仔短裤",category:"裤子",price:59,orig:169,img:"images/product_3.jpg",desc:"夏季宽松直筒松紧腰潮流",tag:"新品"},
-  {id:4,name:"迪奥黑色刺绣牛仔裤",category:"裤子",price:79,orig:229,img:"images/product_4.jpg",desc:"高版本揭阳轻奢黑色刺绣",tag:"热卖"},
-  {id:5,name:"福神浅蓝复古刺绣牛仔裤",category:"裤子",price:79,orig:229,img:"images/product_5.jpg",desc:"高版本揭阳轻奢浅蓝复古",tag:"热卖"},
-  {id:6,name:"普拉达浅蓝三角标牛仔裤",category:"裤子",price:79,orig:229,img:"images/product_6.jpg",desc:"高版本揭阳轻奢三角标",tag:"热卖"},
-  {id:11,name:"广州高版本潮牌牛仔裤",category:"裤子",price:98,orig:269,img:"images/product_7.jpg",desc:"广州高版本潮牌百搭",tag:"新品"},
-  {id:15,name:"高品质普拉达直筒牛仔裤",category:"裤子",price:48.8,orig:149,img:"images/product_8.jpg",desc:"直筒修身百搭揭阳现货",tag:"热卖"},
-  {id:16,name:"克罗心潮牌直筒牛仔短裤",category:"裤子",price:58,orig:169,img:"images/product_9.jpg",desc:"十字架拼接潮牌直筒",tag:"热卖"},
-  {id:18,name:"战马刺绣休闲长裤",category:"裤子",price:79,orig:229,img:"images/product_10.jpg",desc:"网红刺绣高版本直筒轻奢",tag:"热卖"},
-  {id:19,name:"天丝醋酸轻奢休闲裤",category:"裤子",price:128,orig:329,img:"images/product_11.jpg",desc:"高版本新款直筒薄款微宽松",tag:"新品"},
-  {id:25,name:"普拉达户外弯刀休闲长裤",category:"裤子",price:88,orig:239,img:"images/product_13.jpg",desc:"秋冬薄款三角休闲裤",tag:"新品"},
-  {id:26,name:"普拉达黑色直筒牛仔裤",category:"裤子",price:78,orig:219,img:"images/product_14.jpg",desc:"最新款轻奢高端潮牌修身",tag:"热卖"},
-  // 鞋子
-  {id:1,name:"Onitsuka Tiger MEXICO 66 亚瑟士鬼冢虎复古鞋",category:"鞋子",price:150,orig:399,img:"images/product_1.jpg",desc:"高端品质工厂直发复古经典",tag:"热卖"},
-  // 短袖
-  {id:12,name:"字母logo刺绣圆领短袖T恤",category:"短袖",price:79.9,orig:219,img:"images/product_22.jpg",desc:"纯原1:1爆款高版本百搭",tag:"热卖"},
-  {id:13,name:"普拉达圆领刺绣短袖T恤",category:"短袖",price:58,orig:169,img:"images/product_21.jpg",desc:"高品质T恤三标齐全",tag:"热卖"},
-  {id:14,name:"梅花刺绣Polo衫短袖",category:"短袖",price:35.8,orig:119,img:"images/product_20.jpg",desc:"新款百搭修身Polo衫",tag:"热卖"},
-  {id:20,name:"广州轻奢满印字母短袖T恤",category:"短袖",price:99,orig:269,img:"images/product_19.jpg",desc:"最高版本商务男女同款",tag:"新品"},
-  {id:21,name:"普拉达立体剪裁短袖T恤",category:"短袖",price:65,orig:189,img:"images/product_18.jpg",desc:"新款纯棉超高版本男女同款",tag:"新品"},
-  {id:22,name:"普拉达Polo衫三角标短袖",category:"短袖",price:55,orig:159,img:"images/product_17.jpg",desc:"高版本轻奢潮牌商务款",tag:"新品"},
-];
+    <!-- 联系我们 -->
+    <section id=""contact"" class=""contact"">
+        <div class=""container"">
+            <h2 class=""section-title"">联系我们</h2>
+            <div class=""contact-grid"">
+                <div class=""contact-info"">
+                    <div class=""contact-item"">
+                        <span class=""contact-icon"">📍</span>
+                        <div>
+                            <h4>地址</h4>
+                            <p>上海市浦东新区张江高科技园区</p>
+                        </div>
+                    </div>
+                    <div class=""contact-item"">
+                        <span class=""contact-icon"">📧</span>
+                        <div>
+                            <h4>邮箱</h4>
+                            <p>contact@zhenxuanhaowu.com</p>
+                        </div>
+                    </div>
+                    <div class=""contact-item"">
+                        <span class=""contact-icon"">📱</span>
+                        <div>
+                            <h4>电话</h4>
+                            <p>400-888-8888</p>
+                        </div>
+                    </div>
+                    <div class=""contact-item"">
+                        <span class=""contact-icon"">🕐</span>
+                        <div>
+                            <h4>工作时间</h4>
+                            <p>周一至周五 9:00 - 18:00</p>
+                        </div>
+                    </div>
+                </div>
+                <form class=""contact-form"" id=""contactForm"" onsubmit=""handleContactSubmit(event)"">
+                    <div class=""form-group"">
+                        <input type=""text"" placeholder=""您的姓名"" required>
+                    </div>
+                    <div class=""form-group"">
+                        <input type=""email"" placeholder=""电子邮箱"" required>
+                    </div>
+                    <div class=""form-group"">
+                        <input type=""text"" placeholder=""主题"">
+                    </div>
+                    <div class=""form-group"">
+                        <textarea placeholder=""请输入您的留言..."" rows=""5"" required></textarea>
+                    </div>
+                    <button type=""submit"" class=""btn btn-primary btn-full"">发送消息</button>
+                </form>
+            </div>
+        </div>
+    </section>
 
-const categoryList = ["all","卫衣","外套","裤子","鞋子","帽子","短袖"];
-function getCategories(){return categoryList}
+    <!-- 页脚 -->
+    <footer class=""footer"">
+        <div class=""container"">
+            <div class=""footer-grid"">
+                <div class=""footer-brand"">
+                    <a href=""#"" class=""logo"">臻选<span>好物</span></a>
+                    <p>品质生活从这里开始</p>
+                </div>
+                <div class=""footer-links"">
+                    <h4>快速链接</h4>
+                    <a href=""#home"">首页</a>
+                    <a href=""#products"">全部商品</a>
+                    <a href=""#about"">关于我们</a>
+                    <a href=""#contact"">联系我们</a>
+                </div>
+                <div class=""footer-links"">
+                    <h4>帮助中心</h4>
+                    <a href=""#"">购物指南</a>
+                    <a href=""#"">退换政策</a>
+                    <a href=""#"">配送说明</a>
+                    <a href=""#"">常见问题</a>
+                </div>
+                <div class=""footer-newsletter"">
+                    <h4>关注我们</h4>
+                    <p>订阅获取最新优惠和上新通知</p>
+                    <div class=""newsletter-form"">
+                        <input type=""email"" placeholder=""请输入邮箱"">
+                        <button class=""btn btn-primary"">订阅</button>
+                    </div>
+                </div>
+            </div>
+            <div class=""footer-bottom"">
+                <p>&copy; 2026 臻选好物. All rights reserved.</p>
+            </div>
+        </div>
+    </section>
 
-// === JS ===
-let cart=JSON.parse(localStorage.getItem("sc")||"[]");
-let curCat="all";
+    <!-- Toast 提示 -->
+    <div class=""toast"" id=""toast""></div>
 
-function init(){
-  renderCats();
-  renderProds("all");
-  updateCart();
-}
-
-function renderCats(){
-  var cats=getCategories();
-  document.getElementById("categoryTabs").innerHTML=cats.map(c=>
-    '<button class="cat-tab'+(c==="all"?" active":"")+'" data-c="'+c+'">'+(c==="all"?"全部":c)+'</button>'
-  ).join("");
-  document.querySelectorAll(".cat-tab").forEach(b=>b.onclick=function(){
-    document.querySelectorAll(".cat-tab").forEach(x=>x.classList.remove("active"));
-    this.classList.add("active");
-    curCat=this.dataset.c;
-    renderProds(curCat);
-  });
-}
-
-function cardHTML(p){
-  var inC=cart.find(c=>c.id===p.id);
-  return '<div class="card"><div class="card-img">'+
-    (p.img?'<img src="'+p.img+'" alt="'+p.name+'" loading="lazy" onerror="this.parentElement.textContent=\'📦\'">':'📦')+
-    (p.tag?'<span class="card-tag">'+p.tag+'</span>':'')+
-    '</div><div class="card-info"><div class="card-name">'+p.name+'</div>'+
-    '<div class="card-desc">'+p.desc+'</div>'+
-    '<div class="card-bottom"><div class="card-price">¥'+p.price+'<s>¥'+p.orig+'</s></div>'+
-    '<button class="card-btn'+(inC?' in':'')+'" onclick="addCart('+p.id+',this)">'+(inC?'✓':'+')+'</button>'+
-    '</div></div></div>';
-}
-
-function renderProds(cat){
-  var list=cat==="all"?products:products.filter(p=>p.category===cat);
-  document.getElementById("productsGrid").innerHTML=list.map(cardHTML).join("");
-}
-
-function addCart(id,btn){
-  var p=products.find(x=>x.id===id);if(!p)return;
-  var ex=cart.find(c=>c.id===id);
-  if(ex)ex.qty+=1;else cart.push({id,qty:1});
-  save();updateCart();renderProds(curCat);
-  toast(p.name+" 已加入购物袋");
-}
-
-function removeCart(id){cart=cart.filter(c=>c.id!==id);save();updateCart();renderProds(curCat);renderCartItems()}
-function chgQty(id,d){var c=cart.find(x=>x.id===id);if(!c)return;c.qty+=d;if(c.qty<=0){removeCart(id);return}save();updateCart();renderCartItems()}
-function save(){localStorage.setItem("sc",JSON.stringify(cart))}
-
-function updateCart(){
-  var n=cart.reduce((s,c)=>s+c.qty,0);
-  var el=document.getElementById("cartCount");
-  el.textContent=n;el.style.display=n>0?"flex":"none";
-  renderCartItems();
-}
-
-function renderCartItems(){
-  var items=document.getElementById("cartItems");
-  var ft=document.getElementById("cartFooter");
-  if(cart.length===0){items.innerHTML='<p class="empty">购物袋是空的</p>';ft.style.display="none";return}
-  ft.style.display="block";
-  var total=cart.reduce((s,c)=>{var p=products.find(x=>x.id===c.id);return s+(p?p.price*c.qty:0)},0);
-  document.getElementById("cartTotal").textContent="¥"+total.toLocaleString("zh-CN");
-  items.innerHTML=cart.map(c=>{
-    var p=products.find(x=>x.id===c.id);if(!p)return"";
-    return '<div class="cart-item"><div class="cart-item-img">'+
-      (p.img?'<img src="'+p.img+'" alt="'+p.name+'" loading="lazy">':'📦')+
-      '</div><div class="cart-item-info"><div class="cart-item-name">'+p.name+'</div>'+
-      '<div class="cart-item-price">¥'+(p.price*c.qty).toLocaleString()+'</div>'+
-      '<div class="cart-qty"><button onclick="chgQty('+c.id+',-1)">−</button><span>'+c.qty+'</span><button onclick="chgQty('+c.id+',1)">+</button></div>'+
-      '</div><button class="cart-item-del" onclick="removeCart('+c.id+')">&times;</button></div>';
-  }).join("");
-}
-
-function toggleCart(){
-  var p=document.getElementById("cartPanel");
-  var o=document.getElementById("cartOverlay");
-  var on=p.classList.contains("on");
-  if(on){p.classList.remove("on");o.classList.remove("on")}
-  else{p.classList.add("on");o.classList.add("on")}
-}
-
-function checkout(){if(cart.length===0)return;toggleCart();window.location.href="checkout.html"}
-
-var tt;
-function toast(m){
-  clearTimeout(tt);
-  var e=document.getElementById("toast");
-  e.textContent=m;e.className="toast";
-  void e.offsetWidth;e.classList.add("show");
-  tt=setTimeout(function(){e.classList.remove("show")},2500);
-}
-
-document.addEventListener("DOMContentLoaded",init);
-</script>
+    <script src=""js/data.js""></script>
+    <script src=""js/main.js""></script>
 </body>
 </html>

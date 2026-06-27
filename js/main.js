@@ -1,4 +1,4 @@
-﻿// ===== 购物车状态 =====
+// ===== 购物车状态 =====
 let cart = JSON.parse(localStorage.getItem("shopCart") || "[]");
 
 // ===== DOM 元素引用 =====
@@ -10,6 +10,7 @@ const cartItems = document.getElementById("cartItems");
 const cartCount = document.getElementById("cartCount");
 const cartTotal = document.getElementById("cartTotal");
 const cartFooter = document.getElementById("cartFooter");
+const mobileMenu = document.getElementById("mobileMenu");
 const toastEl = document.getElementById("toast");
 
 let currentCategory = "all";
@@ -19,6 +20,7 @@ function init() {
     renderCategories();
     renderProducts("all");
     updateCartUI();
+    setupScrollSpy();
 }
 
 // ===== 渲染分类标签 =====
@@ -38,44 +40,34 @@ function renderCategories() {
     });
 }
 
-// ===== 商品图片 HTML =====
-function productImageHTML(p) {
-    if (p.image) {
-        return `<img src="${p.image}" alt="${p.name}" class="product-img" loading="lazy" onerror="this.style.display='none';this.parentElement.textContent='📦'">`;
-    }
-    return '📦';
-}
-
-// ===== 渲染商品（按分类） =====
+// ===== 渲染商品列表 =====
 function renderProducts(category) {
-    var filtered = category === "all" ? products : products.filter(p => p.category === category);
-    var html = filtered.map(p => productCardHTML(p)).join("");
-    productsGrid.innerHTML = html;
-}
+    const filtered = category === "all" ? products : products.filter(p => p.category === category);
 
-// ===== 商品卡片 HTML =====
-function productCardHTML(p) {
-    const inCart = cart.find(c => c.id === p.id);
-    return `
-    <div class="product-card">
-        <div class="product-image">
-            ${productImageHTML(p)}
-            ${p.tag ? `<span class="product-tag">${p.tag}</span>` : ""}
-        </div>
-        <div class="product-body">
-            <h3 class="product-name">${p.name}</h3>
-            <p class="product-desc">${p.desc}</p>
-            <div class="product-footer">
-                <div class="product-price">
-                    <span class="unit">¥</span>${p.price}
-                    <span class="original">¥${p.originalPrice}</span>
-                </div>
-                <button class="btn-add-cart ${inCart ? "added" : ""}" onclick="addToCart(${p.id}, this)">
-                    ${inCart ? "✓ 已添加" : "+ 加入购物袋"}
-                </button>
+    productsGrid.innerHTML = filtered.map(p => {
+        const inCart = cart.find(c => c.id === p.id);
+        return `
+        <div class="product-card">
+            <div class="product-image">
+                ${p.emoji}
+                ${p.tag ? `<span class="product-tag">${p.tag}</span>` : ""}
             </div>
-        </div>
-    </div>`;
+            <div class="product-body">
+                <span class="product-category-label">${p.category}</span>
+                <h3 class="product-name">${p.name}</h3>
+                <p class="product-desc">${p.desc}</p>
+                <div class="product-footer">
+                    <div class="product-price">
+                        <span class="unit">¥</span>${p.price}
+                        <span class="original">¥${p.originalPrice}</span>
+                    </div>
+                    <button class="btn-add-cart ${inCart ? "added" : ""}" onclick="addToCart(${p.id}, this)">
+                        ${inCart ? "✓ 已添加" : "+ 加入购物车"}
+                    </button>
+                </div>
+            </div>
+        </div>`;
+    }).join("");
 }
 
 // ===== 购物车操作 =====
@@ -93,7 +85,7 @@ function addToCart(id, btn) {
     saveCart();
     updateCartUI();
     renderProducts(currentCategory);
-    showToast(`${product.name} 已加入购物袋`);
+    showToast(`${product.name} 已加入购物车`, "success");
 }
 
 function removeFromCart(id) {
@@ -129,17 +121,9 @@ function updateCartUI() {
     renderCartItems();
 }
 
-// ===== 购物车商品图片 HTML =====
-function cartImageHTML(p) {
-    if (p.image) {
-        return `<img src="${p.image}" alt="${p.name}" class="cart-item-img" loading="lazy" onerror="this.style.display='none';this.parentElement.textContent='📦'">`;
-    }
-    return '📦';
-}
-
 function renderCartItems() {
     if (cart.length === 0) {
-        cartItems.innerHTML = "<p class=\"cart-empty\">购物袋是空的</p>";
+        cartItems.innerHTML = "<p class=\"cart-empty\">购物车是空的</p>";
         cartFooter.style.display = "none";
         return;
     }
@@ -150,14 +134,14 @@ function renderCartItems() {
         return sum + (product ? product.price * c.quantity : 0);
     }, 0);
 
-    cartTotal.textContent = "¥" + total.toLocaleString("zh-CN");
+    cartTotal.textContent = "¥" + total.toLocaleString("zh-CN", { minimumFractionDigits: 2 });
 
     cartItems.innerHTML = cart.map(c => {
         const product = products.find(p => p.id === c.id);
         if (!product) return "";
         return `
         <div class="cart-item">
-            <div class="cart-item-image">${cartImageHTML(product)}</div>
+            <div class="cart-item-image">${product.emoji}</div>
             <div class="cart-item-info">
                 <div class="cart-item-name">${product.name}</div>
                 <div class="cart-item-price">¥${(product.price * c.quantity).toLocaleString()}</div>
@@ -184,24 +168,71 @@ function toggleCart() {
     }
 }
 
-// ===== 结算 → 跳转支付页 =====
+// ===== 结算 =====
 function checkout() {
     if (cart.length === 0) return;
-    toggleCart();
-    window.location.href = "checkout.html";
+    const total = cart.reduce((sum, c) => {
+        const product = products.find(p => p.id === c.id);
+        return sum + (product ? product.price * c.quantity : 0);
+    }, 0);
+    showToast("订单已提交！总金额 ¥" + total.toLocaleString() + "，我们会尽快联系您确认", "success");
+    cart = [];
+    saveCart();
+    updateCartUI();
+    renderProducts(currentCategory);
+    setTimeout(toggleCart, 1500);
 }
 
 // ===== Toast 提示 =====
 let toastTimer;
-function showToast(msg) {
+function showToast(msg, type) {
     clearTimeout(toastTimer);
     toastEl.textContent = msg;
-    toastEl.className = "toast";
+    toastEl.className = "toast " + (type || "");
     void toastEl.offsetWidth;
     toastEl.classList.add("show");
     toastTimer = setTimeout(() => {
         toastEl.classList.remove("show");
     }, 2500);
+}
+
+// ===== 移动端菜单 =====
+function toggleMobileMenu() {
+    mobileMenu.classList.toggle("active");
+}
+
+function closeMobileMenu() {
+    mobileMenu.classList.remove("active");
+}
+
+// ===== 联系表单 =====
+function handleContactSubmit(e) {
+    e.preventDefault();
+    showToast("消息已发送，我们会尽快回复您！", "success");
+    e.target.reset();
+}
+
+// ===== 滚动监听（导航高亮） =====
+function setupScrollSpy() {
+    const sections = document.querySelectorAll("section[id]");
+    const navLinks = document.querySelectorAll(".nav-link");
+
+    window.addEventListener("scroll", () => {
+        let current = "";
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop - 100;
+            if (window.scrollY >= sectionTop) {
+                current = section.getAttribute("id");
+            }
+        });
+
+        navLinks.forEach(link => {
+            link.classList.remove("active");
+            if (link.getAttribute("href") === "#" + current) {
+                link.classList.add("active");
+            }
+        });
+    });
 }
 
 // ===== 启动 =====
