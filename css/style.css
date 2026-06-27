@@ -1,4 +1,4 @@
-/* ===== LIZHIGANG — 手机端 ===== */
+﻿/* ===== LIZHIGANG — 手机端 ===== */
 :root {
     --black: #1A1A1A;
     --white: #FFFFFF;
@@ -15,7 +15,7 @@ html { scroll-behavior: smooth; }
 body {
     font-family: 'Noto Sans SC', -apple-system, 'Helvetica Neue', sans-serif;
     color: var(--black);
-    background: url('../images/lv-bg.jpg') center/cover fixed no-repeat;
+    background: url('../images/lv-bg.jpg') center/auto 100% fixed no-repeat; background-color: #000;
     background-color: #000;
     line-height: 1.5;
     font-size: 14px;
