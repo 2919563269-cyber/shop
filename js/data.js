@@ -1,21 +1,21 @@
-// 商品数据
+﻿// 商品数据
 const products = [
     // ====== 鞋子 ======
     {
         id: 1,
-        name: 'Onitsuka Tiger MEXICO 66 亚瑟士鬼冢虎复古经典板鞋',
+        name: 'Onitsuka Tiger MEXICO 66 亚瑟士鬼冢虎复古老爹鞋',
         category: '鞋子',
         price: 150,
         originalPrice: 399,
         image: 'images/product_1.jpg',
-        desc: '高端品质工厂直发，复古经典款',
+        desc: '高端品质工厂直发，复古老爹鞋',
         tag: '热卖',
     },
 
     // ====== 裤子 ======
     {
         id: 2,
-        name: '克罗心复古黑色牛仔短裤',
+        name: '克罗心复古黑色牛仔裤',
         category: '裤子',
         price: 69,
         originalPrice: 199,
@@ -212,7 +212,7 @@ const products = [
         price: 279,
         originalPrice: 699,
         image: 'images/product_21.jpg',
-        desc: '三标全齐，独家版本高品质',
+        desc: '三标齐全，独家版本高品质',
         tag: '新品',
     },
     {
@@ -256,7 +256,7 @@ const products = [
         price: 58,
         originalPrice: 169,
         image: 'images/product_21.jpg',
-        desc: '高品质T恤，三标全齐',
+        desc: '高品质T恤，三标齐全',
         tag: '热卖',
     },
     {
