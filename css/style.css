@@ -90,17 +90,11 @@ button { font-family: inherit; cursor: pointer; }
     z-index: 1;
     text-align: center;
 }
-.brand-logo {
-    width: 72px; height: 72px;
-    object-fit: contain;
-    border-radius: 50%;
-    margin: 0 auto 14px;
-    border: 2px solid rgba(255,255,255,0.4);
-}
+.brand-logo { display: none; }
 .brand-name {
-    font-size: 26px;
-    font-weight: 700;
-    letter-spacing: 0.16em;
+    font-size: 36px;
+    font-weight: 300;
+    letter-spacing: 0.06em;
     color: #FFFFFF;
     text-transform: uppercase;
 }
@@ -563,8 +557,14 @@ button { font-family: inherit; cursor: pointer; }
     .product-name { font-size: 14px; }
     .product-price { font-size: 15px; }
     .brand-hero { height: 55vh; min-height: 380px; }
-    .brand-logo { width: 90px; height: 90px; }
-    .brand-name { font-size: 32px; }
+    .brand-logo { display: none; }
+    .brand-name {
+    font-size: 36px;
+    font-weight: 300;
+    letter-spacing: 0.06em;
+    color: #FFFFFF;
+    text-transform: uppercase;
+}
     .cat-tab { padding: 13px 18px; font-size: 13px; }
     .cart-sidebar { width: 400px; }
 }
