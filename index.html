@@ -1,255 +1,74 @@
 <!DOCTYPE html>
-<html lang=""zh-CN"">
+<html lang="zh-CN">
 <head>
-    <meta charset=""UTF-8"">
-    <meta name=""viewport"" content=""width=device-width, initial-scale=1.0"">
-    <title>Jkun - 品质生活从这里开始</title>
-    <link rel=""stylesheet"" href=""css/style.css"">
-    <link rel=""preconnect"" href=""https://fonts.googleapis.com"">
-    <link href=""https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap"" rel=""stylesheet"">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NJK - 品质生活从这里开始</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!-- 导航栏 -->
-    <header class=""header"">
-        <div class=""container"">
-            <a href=""#"" class=""logo"">J<span>KUN</span></a>
-            <nav class=""nav"">
-                <a href=""#home"" class=""nav-link active"">首页</a>
-                <a href=""#products"" class=""nav-link"">全部商品</a>
-                <a href=""#关于我们"" class=""nav-link"">关于我们</a>
-                <a href=""#联系我们"" class=""nav-link"">联系我们</a>
-            </nav>
-            <div class=""header-actions"">
-                <button class=""btn-icon cart-btn"" onclick=""toggleCart()"">
-                    <svg width=""22"" height=""22"" viewBox=""0 0 24 24"" fill=""none"" stroke=""currentColor"" stroke-width=""2"">
-                        <circle cx=""9"" cy=""21"" r=""1""/><circle cx=""20"" cy=""21"" r=""1""/>
-                        <path d=""M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6""/>
+    <!-- 顶部导航 -->
+    <header class="header">
+        <div class="container">
+            <a href="#" class="logo">N<span>JK</span></a>
+            <div class="header-actions">
+                <button class="btn-icon cart-btn" onclick="toggleCart()">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/>
+                        <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
                     </svg>
-                    <span class=""cart-count"" id=""cartCount"">0</span>
-                </button>
-                <button class=""btn-icon menu-toggle"" onclick=""toggleMobileMenu()"">
-                    <svg width=""24"" height=""24"" viewBox=""0 0 24 24"" fill=""none"" stroke=""currentColor"" stroke-width=""2"">
-                        <line x1=""3"" y1=""6"" x2=""21"" y2=""6""/><line x1=""3"" y1=""12"" x2=""21"" y2=""12""/><line x1=""3"" y1=""18"" x2=""21"" y2=""18""/>
-                    </svg>
+                    <span class="cart-count" id="cartCount">0</span>
                 </button>
             </div>
         </div>
     </header>
 
-    <!-- 移动端菜单 -->
-    <div class=""mobile-menu"" id=""mobileMenu"">
-        <a href=""#home"" onclick=""closeMobileMenu()"">首页</a>
-        <a href=""#products"" onclick=""closeMobileMenu()"">全部商品</a>
-        <a href=""#关于我们"" onclick=""closeMobileMenu()"">关于我们</a>
-        <a href=""#联系我们"" onclick=""closeMobileMenu()"">联系我们</a>
-    </div>
-
     <!-- 购物车侧边栏 -->
-    <div class=""cart-overlay"" id=""cartOverlay"" onclick=""toggleCart()""></div>
-    <div class=""cart-sidebar"" id=""cartSidebar"">
-        <div class=""cart-header"">
+    <div class="cart-overlay" id="cartOverlay" onclick="toggleCart()"></div>
+    <div class="cart-sidebar" id="cartSidebar">
+        <div class="cart-header">
             <h3>购物车</h3>
-            <button class=""btn-close"" onclick=""toggleCart()"">&times;</button>
+            <button class="btn-close" onclick="toggleCart()">&times;</button>
         </div>
-        <div class=""cart-items"" id=""cartItems"">
-            <p class=""cart-empty"">购物车是空的</p>
+        <div class="cart-items" id="cartItems">
+            <p class="cart-empty">购物车是空的</p>
         </div>
-        <div class=""cart-footer"" id=""cartFooter"" style=""display:none"">
-            <div class=""cart-total"">
+        <div class="cart-footer" id="cartFooter" style="display:none">
+            <div class="cart-total">
                 <span>合计</span>
-                <span class=""total-price"" id=""cartTotal"">¥0.00</span>
+                <span class="total-price" id="cartTotal">¥0.00</span>
             </div>
-            <button class=""btn btn-primary btn-full"" onclick=""checkout()"">立即结算</button>
+            <button class="btn btn-primary btn-full" onclick="checkout()">立即结算</button>
         </div>
     </div>
 
-    <!-- 首页 Hero -->
-    <section id=""home"" class=""hero"">
-        <div class=""hero-content"">
-            <h1 class=""hero-title"">品质生活<br>从这里开始</h1>
-            <p class=""hero-subtitle"">精选全球好物，用心服务每一位客户</p>
-            <div class=""hero-buttons"">
-                <a href=""#products"" class=""btn btn-primary"">立即选购</a>
-                <a href=""#关于我们"" class=""btn btn-outline"">了解更多</a>
-            </div>
-        </div>
-        <div class=""hero-bg"">
-            <div class=""hero-shape shape-1""></div>
-            <div class=""hero-shape shape-2""></div>
-            <div class=""hero-shape shape-3""></div>
-        </div>
-    </section>
-
-    <!-- 特色亮点 -->
-    <section class=""features"">
-        <div class=""container"">
-            <div class=""features-grid"">
-                <div class=""feature-card"">
-                    <div class=""feature-icon"">🚚</div>
-                    <h4>全国包邮</h4>
-                    <p>订单满99元即享全国免费配送</p>
-                </div>
-                <div class=""feature-card"">
-                    <div class=""feature-icon"">🔄</div>
-                    <h4>7天无理由退换</h4>
-                    <p>不满意随时退，购物零风险</p>
-                </div>
-                <div class=""feature-card"">
-                    <div class=""feature-icon"">🛡️</div>
-                    <h4>正品保障</h4>
-                    <p>100%正品承诺，假一赔十</p>
-                </div>
-                <div class=""feature-card"">
-                    <div class=""feature-icon"">💬</div>
-                    <h4>专属客服</h4>
-                    <p>一对一贴心服务，随时在线</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- 商品分类导航 -->
-    <section class=""商品分类"">
-        <div class=""container"">
-            <h2 class=""section-title"">商品分类</h2>
-            <div class=""category-tabs"" id=""categoryTabs"">
-                <button class=""cat-tab active"" data-category=""all"">全部</button>
-            </div>
+    <!-- 分类导航 -->
+    <section class="category-bar" id="categoryBar">
+        <div class="container">
+            <div class="category-tabs" id="categoryTabs"></div>
         </div>
     </section>
 
     <!-- 商品列表 -->
-    <section id=""精选商品"" class=""精选商品"">
-        <div class=""container"">
-            <h2 class=""section-title"">热门推荐</h2>
-            <div class=""精选商品-grid"" id=""精选商品Grid"">
-                <!-- 动态生成 -->
-            </div>
+    <section class="products" id="products">
+        <div class="container">
+            <div class="products-grid" id="productsGrid"></div>
         </div>
     </section>
 
-    <!-- 关于我们 -->
-    <section id=""关于我们"" class=""关于我们"">
-        <div class=""container"">
-            <div class=""关于我们-content"">
-                <div class=""关于我们-text"">
-                    <h2 class=""section-title"">关于Jkun</h2>
-                    <p>Jkun成立于2024年，致力于为消费者提供高品质、高性价比的优质商品。我们严格把控每一个环节，从选品、采购到物流配送，确保每一位客户都能享受到最好的购物体验。</p>
-                    <p>我们的团队由一群热爱生活、追求品质的年轻人组成，我们相信好的产品值得被更多人发现和使用。</p>
-                    <div class=""关于我们-stats"">
-                        <div class=""stat"">
-                            <span class=""stat-number"">10,000+</span>
-                            <span class=""stat-label"">满意客户</span>
-                        </div>
-                        <div class=""stat"">
-                            <span class=""stat-number"">500+</span>
-                            <span class=""stat-label"">精选商品</span>
-                        </div>
-                        <div class=""stat"">
-                            <span class=""stat-number"">99.8%</span>
-                            <span class=""stat-label"">好评率</span>
-                        </div>
-                    </div>
-                </div>
-                <div class=""关于我们-image"">
-                    <div class=""关于我们-img-placeholder"">
-                        <span>🌟</span>
-                        <p>品质生活从这里开始</p>
-                    </div>
-                </div>
-            </div>
+    <!-- 极简页脚 -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 NJK. 版权所有. 电话：18688581472</p>
         </div>
-    </section>
-
-    <!-- 联系我们 -->
-    <section id=""联系我们"" class=""联系我们"">
-        <div class=""container"">
-            <h2 class=""section-title"">联系我们</h2>
-            <div class=""联系我们-grid"">
-                <div class=""联系我们-info"">
-                    <div class=""联系我们-item"">
-                        <span class=""联系我们-icon"">📍</span>
-                        <div>
-                            <h4>地址</h4>
-                            <p>上海市浦东新区张江高科技园区</p>
-                        </div>
-                    </div>
-                    
-                    <div class=""联系我们-item"">
-                        <span class=""联系我们-icon"">📱</span>
-                        <div>
-                            <h4>电话</h4>
-                            <p>18688581472</p>
-                        </div>
-                    </div>
-                    <div class=""联系我们-item"">
-                        <span class=""联系我们-icon"">🕐</span>
-                        <div>
-                            <h4>工作时间</h4>
-                            <p>周一至周五 9:00 - 18:00</p>
-                        </div>
-                    </div>
-                </div>
-                <form class=""联系我们-form"" id=""联系我们Form"" onsubmit=""handle联系我们Submit(event)"">
-                    <div class=""form-group"">
-                        <input type=""text"" placeholder=""您的姓名"" required>
-                    </div>
-                    <div class=""form-group"">
-                        <input type=""email"" placeholder=""Email"" required>
-                    </div>
-                    <div class=""form-group"">
-                        <input type=""text"" placeholder=""主题"">
-                    </div>
-                    <div class=""form-group"">
-                        <textarea placeholder=""请输入您的留言......"" rows=""5"" required></textarea>
-                    </div>
-                    <button type=""submit"" class=""btn btn-primary btn-full"">发送消息</button>
-                </form>
-            </div>
-        </div>
-    </section>
-
-    <!-- 页脚 -->
-    <footer class=""footer"">
-        <div class=""container"">
-            <div class=""footer-grid"">
-                <div class=""footer-brand"">
-                    <a href=""#"" class=""logo"">J<span>KUN</span></a>
-                    <p>品质生活从这里开始</p>
-                </div>
-                <div class=""footer-links"">
-                    <h4>快速链接</h4>
-                    <a href=""#home"">首页</a>
-                    <a href=""#products"">全部商品</a>
-                    <a href=""#关于我们"">关于我们</a>
-                    <a href=""#联系我们"">联系我们</a>
-                </div>
-                <div class=""footer-links"">
-                    <h4>帮助中心</h4>
-                    <a href=""#"">购物指南</a>
-                    <a href=""#"">退换政策</a>
-                    <a href=""#"">配送说明</a>
-                    <a href=""#"">常见问题</a>
-                </div>
-                <div class=""footer-newsletter"">
-                    <h4>关注我们</h4>
-                    <p>订阅获取最新优惠和上新通知</p>
-                    <div class=""newsletter-form"">
-                        <input type=""email"" placeholder=""请输入邮箱"">
-                        <button class=""btn btn-primary"">订阅</button>
-                    </div>
-                </div>
-            </div>
-            <div class=""footer-bottom"">
-                <p>&copy; 2026 Jkun. 版权所有.</p>
-            </div>
-        </div>
-    </section>
+    </footer>
 
     <!-- Toast 提示 -->
-    <div class=""toast"" id=""toast""></div>
+    <div class="toast" id="toast"></div>
 
-    <script src=""js/data.js""></script>
-    <script src=""js/main.js""></script>
+    <script src="js/data.js"></script>
+    <script src="js/main.js"></script>
 </body>
 </html>

@@ -10,7 +10,6 @@ const cartItems = document.getElementById("cartItems");
 const cartCount = document.getElementById("cartCount");
 const cartTotal = document.getElementById("cartTotal");
 const cartFooter = document.getElementById("cartFooter");
-const mobileMenu = document.getElementById("mobileMenu");
 const toastEl = document.getElementById("toast");
 
 let currentCategory = "all";
@@ -20,7 +19,6 @@ function init() {
     renderCategories();
     renderProducts("all");
     updateCartUI();
-    setupScrollSpy();
 }
 
 // ===== 渲染分类标签 =====
@@ -210,45 +208,6 @@ function showToast(msg, type) {
     toastTimer = setTimeout(() => {
         toastEl.classList.remove("show");
     }, 2500);
-}
-
-// ===== 移动端菜单 =====
-function toggleMobileMenu() {
-    mobileMenu.classList.toggle("active");
-}
-
-function closeMobileMenu() {
-    mobileMenu.classList.remove("active");
-}
-
-// ===== 联系表单 =====
-function handleContactSubmit(e) {
-    e.preventDefault();
-    showToast("消息已发送，我们会尽快回复您！", "success");
-    e.target.reset();
-}
-
-// ===== 滚动监听（导航高亮） =====
-function setupScrollSpy() {
-    const sections = document.querySelectorAll("section[id]");
-    const navLinks = document.querySelectorAll(".nav-link");
-
-    window.addEventListener("scroll", () => {
-        let current = "";
-        sections.forEach(section => {
-            const sectionTop = section.offsetTop - 100;
-            if (window.scrollY >= sectionTop) {
-                current = section.getAttribute("id");
-            }
-        });
-
-        navLinks.forEach(link => {
-            link.classList.remove("active");
-            if (link.getAttribute("href") === "#" + current) {
-                link.classList.add("active");
-            }
-        });
-    });
 }
 
 // ===== 启动 =====
