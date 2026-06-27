@@ -75,7 +75,7 @@ button { font-family: inherit; cursor: pointer; }
     position: relative;
     height: 45vh;
     min-height: 280px;
-    background: url('images/model-bg.jpg') center/cover no-repeat;
+    background: url('../images/model-bg.jpg') center/cover no-repeat;
     display: flex;
     align-items: center;
     justify-content: center;
