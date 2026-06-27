@@ -563,3 +563,174 @@ button { font-family: inherit; cursor: pointer; }
     .form-row { flex-direction: row; }
     .summary-card { position: sticky; top: 80px; }
 }
+/* ===== 支付弹窗 ===== */
+.payment-modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.7);
+    z-index: 5000;
+    display: none;
+}
+.payment-modal-overlay.active { display: block; }
+
+.payment-modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.9);
+    background: #1a1a1a;
+    border-radius: 12px;
+    z-index: 5001;
+    width: 90vw;
+    max-width: 380px;
+    max-height: 90vh;
+    overflow-y: auto;
+    padding: 24px 20px 20px;
+    display: none;
+    opacity: 0;
+    transition: all 0.3s ease;
+}
+.payment-modal.active { display: block; opacity: 1; transform: translate(-50%, -50%) scale(1); }
+
+.payment-modal-close {
+    position: absolute;
+    top: 10px;
+    right: 14px;
+    background: none;
+    border: none;
+    color: #999;
+    font-size: 24px;
+    cursor: pointer;
+    line-height: 1;
+}
+
+.payment-title {
+    font-size: 20px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    color: #fff;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* 支付方式切换 */
+.payment-tabs {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+.payment-tab {
+    flex: 1;
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid #333;
+    background: transparent;
+    color: #999;
+    font-size: 14px;
+    font-weight: 500;
+    font-family: inherit;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+}
+.payment-tab.active {
+    border-color: #fff;
+    color: #fff;
+    background: rgba(255,255,255,0.08);
+}
+.payment-tab-icon { font-size: 16px; }
+
+/* 二维码区域 */
+.payment-qr-area { margin-bottom: 16px; }
+.payment-qr-panel { display: none; text-align: center; }
+.payment-qr-panel.active { display: block; }
+
+.qr-box {
+    display: inline-block;
+    padding: 16px;
+    background: #fff;
+    border-radius: 12px;
+    margin-bottom: 12px;
+}
+.qr-box img {
+    width: 200px;
+    height: 200px;
+    display: block;
+}
+.qr-placeholder-large svg { display: block; }
+
+.qr-label {
+    font-size: 15px;
+    font-weight: 600;
+    color: #fff;
+    margin-bottom: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+}
+.qr-label-icon { font-size: 18px; }
+
+.qr-hint {
+    font-size: 12px;
+    color: #999;
+    margin-bottom: 6px;
+}
+.qr-amount {
+    font-size: 28px;
+    font-weight: 700;
+    color: #fff;
+    letter-spacing: 0.04em;
+}
+
+.payment-note {
+    text-align: center;
+    padding-top: 14px;
+    border-top: 1px solid #333;
+}
+.payment-note p {
+    font-size: 12px;
+    color: #999;
+    line-height: 1.8;
+}
+.payment-note strong { color: #fff; }
+.payment-cs { margin-top: 2px; }
+.payment-cs strong { color: #07C160; }
+
+/* ===== 结算页深色主题 ===== */
+.checkout-page {
+    background: #0d0d0d;
+}
+.checkout-page .header {
+    background: rgba(13,13,13,0.9);
+    border-bottom: 1px solid #222;
+}
+.checkout-page .header .logo-text { color: #fff; }
+.checkout-page .back-link { color: #999; }
+.checkout-page .checkout-title { color: #fff; }
+.checkout-page .checkout-section-title { color: #fff; border-bottom-color: #222; }
+.checkout-page .checkout-item { border-bottom-color: #222; }
+.checkout-page .checkout-item-name { color: #fff; }
+.checkout-page .checkout-item-meta { color: #999; }
+.checkout-page .checkout-item-price { color: #fff; }
+.checkout-page .form-group label { color: #999; }
+.checkout-page .form-group input,
+.checkout-page .form-group textarea {
+    background: #1a1a1a;
+    border-color: #333;
+    color: #fff;
+}
+.checkout-page .form-group input:focus,
+.checkout-page .form-group textarea:focus { border-color: #fff; }
+.checkout-page .summary-card { background: #1a1a1a; }
+.checkout-page .summary-row { color: #999; }
+.checkout-page .summary-divider { background: #333; }
+.checkout-page .summary-total { color: #fff; }
+.checkout-page .summary-note { color: #999; }
+.checkout-page .footer {
+    background: #0d0d0d;
+    border-top: 1px solid #222;
+}
