@@ -59,7 +59,6 @@ function renderProducts(category) {
                 ${p.tag ? `<span class="product-tag">${p.tag}</span>` : ""}
             </div>
             <div class="product-body">
-                <span class="product-category-label">${p.category}</span>
                 <h3 class="product-name">${p.name}</h3>
                 <p class="product-desc">${p.desc}</p>
                 <div class="product-footer">
@@ -68,7 +67,7 @@ function renderProducts(category) {
                         <span class="original">¥${p.originalPrice}</span>
                     </div>
                     <button class="btn-add-cart ${inCart ? "added" : ""}" onclick="addToCart(${p.id}, this)">
-                        ${inCart ? "✓ 已添加" : "+ 加入购物车"}
+                        ${inCart ? "✓ 已添加" : "+ 加入购物袋"}
                     </button>
                 </div>
             </div>
@@ -91,7 +90,7 @@ function addToCart(id, btn) {
     saveCart();
     updateCartUI();
     renderProducts(currentCategory);
-    showToast(`${product.name} 已加入购物车`, "success");
+    showToast(`${product.name} 已加入购物袋`);
 }
 
 function removeFromCart(id) {
@@ -137,7 +136,7 @@ function cartImageHTML(p) {
 
 function renderCartItems() {
     if (cart.length === 0) {
-        cartItems.innerHTML = "<p class=\"cart-empty\">购物车是空的</p>";
+        cartItems.innerHTML = "<p class=\"cart-empty\">购物袋是空的</p>";
         cartFooter.style.display = "none";
         return;
     }
@@ -148,7 +147,7 @@ function renderCartItems() {
         return sum + (product ? product.price * c.quantity : 0);
     }, 0);
 
-    cartTotal.textContent = "¥" + total.toLocaleString("zh-CN", { minimumFractionDigits: 2 });
+    cartTotal.textContent = "¥" + total.toLocaleString("zh-CN");
 
     cartItems.innerHTML = cart.map(c => {
         const product = products.find(p => p.id === c.id);
@@ -182,27 +181,19 @@ function toggleCart() {
     }
 }
 
-// ===== 结算 =====
+// ===== 结算 → 跳转支付页 =====
 function checkout() {
     if (cart.length === 0) return;
-    const total = cart.reduce((sum, c) => {
-        const product = products.find(p => p.id === c.id);
-        return sum + (product ? product.price * c.quantity : 0);
-    }, 0);
-    showToast("订单已提交！合计 ¥" + total.toLocaleString() + "，我们会尽快联系您确认", "success");
-    cart = [];
-    saveCart();
-    updateCartUI();
-    renderProducts(currentCategory);
-    setTimeout(toggleCart, 1500);
+    toggleCart();
+    window.location.href = "checkout.html";
 }
 
 // ===== Toast 提示 =====
 let toastTimer;
-function showToast(msg, type) {
+function showToast(msg) {
     clearTimeout(toastTimer);
     toastEl.textContent = msg;
-    toastEl.className = "toast " + (type || "");
+    toastEl.className = "toast";
     void toastEl.offsetWidth;
     toastEl.classList.add("show");
     toastTimer = setTimeout(() => {
