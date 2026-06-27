@@ -41,38 +41,67 @@ function renderCategories() {
 // ===== 商品图片 HTML =====
 function productImageHTML(p) {
     if (p.image) {
-        return `<img src="${p.image}" alt="${p.name}" class="product-img" loading="lazy" onerror="this.style.display='none';this.parentElement.textContent='${p.emoji}'">`;
+        return `<img src="${p.image}" alt="${p.name}" class="product-img" loading="lazy" onerror="this.style.display='none';this.parentElement.textContent='${p.emoji||'📦'}'">`;
     }
-    return p.emoji;
+    return p.emoji || '📦';
 }
 
-// ===== 渲染商品列表 =====
+// ===== 渲染商品列表（按分类分组） =====
 function renderProducts(category) {
-    const filtered = category === "all" ? products : products.filter(p => p.category === category);
-
-    productsGrid.innerHTML = filtered.map(p => {
-        const inCart = cart.find(c => c.id === p.id);
-        return `
-        <div class="product-card">
-            <div class="product-image">
-                ${productImageHTML(p)}
-                ${p.tag ? `<span class="product-tag">${p.tag}</span>` : ""}
-            </div>
-            <div class="product-body">
-                <h3 class="product-name">${p.name}</h3>
-                <p class="product-desc">${p.desc}</p>
-                <div class="product-footer">
-                    <div class="product-price">
-                        <span class="unit">¥</span>${p.price}
-                        <span class="original">¥${p.originalPrice}</span>
-                    </div>
-                    <button class="btn-add-cart ${inCart ? "added" : ""}" onclick="addToCart(${p.id}, this)">
-                        ${inCart ? "✓ 已添加" : "+ 加入购物袋"}
-                    </button>
+    const categories = getCategories().filter(c => c !== 'all');
+    
+    if (category === "all") {
+        // 全部模式：按分类分组展示
+        var html = '';
+        for (var cat of categories) {
+            var catProducts = products.filter(p => p.category === cat);
+            if (catProducts.length === 0) continue;
+            
+            html += `
+            <div class="category-section">
+                <h2 class="category-heading">${cat}</h2>
+                <div class="products-grid">
+                    ${catProducts.map(p => productCardHTML(p)).join("")}
                 </div>
+            </div>`;
+        }
+        productsGrid.innerHTML = html;
+    } else {
+        // 单个分类
+        var filtered = products.filter(p => p.category === category);
+        productsGrid.innerHTML = `
+            <div class="category-section">
+                <h2 class="category-heading">${category}</h2>
+                <div class="products-grid">
+                    ${filtered.map(p => productCardHTML(p)).join("")}
+                </div>
+            </div>`;
+    }
+}
+
+// ===== 商品卡片 HTML =====
+function productCardHTML(p) {
+    const inCart = cart.find(c => c.id === p.id);
+    return `
+    <div class="product-card">
+        <div class="product-image">
+            ${productImageHTML(p)}
+            ${p.tag ? `<span class="product-tag">${p.tag}</span>` : ""}
+        </div>
+        <div class="product-body">
+            <h3 class="product-name">${p.name}</h3>
+            <p class="product-desc">${p.desc}</p>
+            <div class="product-footer">
+                <div class="product-price">
+                    <span class="unit">¥</span>${p.price}
+                    <span class="original">¥${p.originalPrice}</span>
+                </div>
+                <button class="btn-add-cart ${inCart ? "added" : ""}" onclick="addToCart(${p.id}, this)">
+                    ${inCart ? "✓ 已添加" : "+ 加入购物袋"}
+                </button>
             </div>
-        </div>`;
-    }).join("");
+        </div>
+    </div>`;
 }
 
 // ===== 购物车操作 =====
@@ -129,9 +158,9 @@ function updateCartUI() {
 // ===== 购物车商品图片 HTML =====
 function cartImageHTML(p) {
     if (p.image) {
-        return `<img src="${p.image}" alt="${p.name}" class="cart-item-img" loading="lazy" onerror="this.style.display='none';this.parentElement.textContent='${p.emoji}'">`;
+        return `<img src="${p.image}" alt="${p.name}" class="cart-item-img" loading="lazy" onerror="this.style.display='none';this.parentElement.textContent='📦'">`;
     }
-    return p.emoji;
+    return '📦';
 }
 
 function renderCartItems() {
