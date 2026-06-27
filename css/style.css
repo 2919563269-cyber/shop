@@ -1,4 +1,4 @@
-﻿/* ===== 基础变量 ===== */
+/* ===== 基础变量 ===== */
 :root {
     --primary: #4F46E5;
     --primary-dark: #3730A3;
@@ -798,4 +798,11 @@ input, textarea, button { font-family: inherit; font-size: inherit; }
     .cart-sidebar { width: 100vw; }
     .footer-grid { grid-template-columns: 1fr; }
     .newsletter-form { flex-direction: column; }
+}
+
+/* ===== Product Image ===== */
+.product-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
