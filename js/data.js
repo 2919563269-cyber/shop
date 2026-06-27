@@ -120,10 +120,50 @@ const products = [
         desc: '头层牛皮，手工缝制，复古做旧',
         tag: '',
     },
-];
+
+    {
+        id: 13,
+        name: '高版本轻奢克罗心牛仔裤',
+        category: '服饰',
+        price: 79,
+        originalPrice: 299,
+        emoji: '👖',
+        desc: '十字架贴布印花，男女同款，广州现货秒发',
+        tag: '新品',
+    },
+    {
+        id: 14,
+        name: '高版本轻奢克罗心牛仔裤',
+        category: '裤子',
+        price: 79,
+        originalPrice: 299,
+        emoji: '👖',
+        desc: '十字架贴布印花，男女同款，广州现货秒发',
+        tag: '新品',
+    },];
 
 // 获取所有分类
 function getCategories() {
     const cats = new Set(products.map(p => p.category));
-    return ['all', ...Array.from(cats)];
+    return ['all', ...Array.from(cats)
+    {
+        id: 13,
+        name: '高版本轻奢克罗心牛仔裤',
+        category: '服饰',
+        price: 79,
+        originalPrice: 299,
+        emoji: '👖',
+        desc: '十字架贴布印花，男女同款，广州现货秒发',
+        tag: '新品',
+    },
+    {
+        id: 14,
+        name: '高版本轻奢克罗心牛仔裤',
+        category: '裤子',
+        price: 79,
+        originalPrice: 299,
+        emoji: '👖',
+        desc: '十字架贴布印花，男女同款，广州现货秒发',
+        tag: '新品',
+    },];
 }
