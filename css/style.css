@@ -170,16 +170,16 @@ button { font-family: inherit; cursor: pointer; }
 
 /* ===== 商品卡片 ===== */
 .product-card {
-    background: #1a1a1a;
+    background: #fff;
     
     
     border-radius: 2px;
     transition: opacity 0.3s ease;
 }
-.product-card .product-name { color: #fff; }
-.product-card .product-desc { color: rgba(255,255,255,0.7); }
-.product-card .product-price { color: #fff; }
-.product-card .product-original { color: rgba(255,255,255,0.5); }
+.product-card .product-name { color: #111; }
+.product-card .product-desc { color: #666; }
+.product-card .product-price { color: #111; }
+.product-card .product-original { color: #999; }
 .product-card:hover { opacity: 0.85; }
 
 .product-image {
