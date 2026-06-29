@@ -366,9 +366,9 @@ function addCartSize(id,btn){
 }
 function addCart(id,btn,size){
   var p=products.find(function(x){return x.id===id});if(!p)return;
-  var e=cart.find(function(c){return c.id===id});
-  if(e)e.qty+=1;else cart.push({id,qty:1});
-  save();updateCart();renderProds(cur);toast(p.name+" 已加入购物袋")
+  var ex=cart.find(function(c){return c.id===id&&c.size===(size||''));if(ex){ex.qty++;save();updateCart();renderProds(cur);btn.textContent='已添加';btn.classList.add('in');return}
+  cart.push({id:id,qty:1,size:size||''});
+  save();updateCart();renderProds(cur);toast(p.name+(size?' ('+size+')':'')+" 已加入购物袋")
 }
 function removeCart(id){cart=cart.filter(function(c){return c.id!==id});save();updateCart();renderProds(cur);renderCartItems()}
 function chgQty(id,d){var c=cart.find(function(x){return x.id===id});if(!c)return;c.qty+=d;if(c.qty<=0){removeCart(id);return}save();updateCart();renderCartItems()}
@@ -423,7 +423,7 @@ function selSize(el,size){
   document.querySelectorAll("#pdSizes .pd-size").forEach(function(s){s.classList.remove("on")});
   el.classList.add("on");o._selSize=size;
 }
-function slidePd(dir){{
+function slidePd(dir){
   var o=document.getElementById("pdOverlay");if(!o)return;
   var count=o._slideCount;if(!count||count<=1)return;
   o._slideIdx=(o._slideIdx+dir+count)%count;
@@ -437,7 +437,6 @@ function closeDetail(){
   clearTimeout(slideTimer);
   var o=document.getElementById("pdOverlay");if(o)o.remove()
 }
-var o=document.getElementById("pdOverlay");if(o)o.remove()}
 function closePay(){var o=document.getElementById("payOverlay");if(o)o.remove()}
 </script>
 </body>
