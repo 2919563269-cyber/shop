@@ -215,6 +215,16 @@ a{text-decoration:none;color:inherit}
 .pay-note p{font-size:12px;color:#999;line-height:1.8}
 .pay-note strong{color:#fff}
 
+
+/* ===== 图片画廊 ===== */
+.pd-gallery{position:relative;width:100%;aspect-ratio:4/5;border-radius:12px;overflow:hidden;margin-bottom:16px}
+.pd-gallery .slides{display:flex;height:100%;transition:transform .3s;touch-action:pan-y}
+.pd-gallery .slides img{width:100%;height:100%;object-fit:cover;flex-shrink:0}
+.pd-dots{display:flex;justify-content:center;gap:6px;position:absolute;bottom:12px;left:50%;transform:translateX(-50%)}
+.pd-dot{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.5);transition:all .2s}
+.pd-dot.on{background:#fff;width:20px;border-radius:4px}
+.pd-prev,.pd-next{position:absolute;top:50%;transform:translateY(-50%);width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,.8);border:none;font-size:18px;display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:2;color:#333}
+.pd-prev{left:8px}.pd-next{right:8px}
 /* ===== 商品详情弹窗 ===== */
 .pd-overlay{position:fixed;inset:0;background:rgba(0,0,0,.65);z-index:600;display:none}
 .pd-overlay.on{display:flex;align-items:flex-end;justify-content:center}
@@ -385,12 +395,30 @@ function showPay(){
 function showDetail(id){
   var p=products.find(function(x){return x.id===id});if(!p)return;
   var i=cart.find(function(c){return c.id===id});
+  var imgs=p.imgs&&p.imgs.length?p.imgs:[p.img];
+  var dots='';for(var j=0;j<imgs.length;j++){dots+='<span class="pd-dot'+(j===0?' on':'')+'"></span>';}
   var o=document.createElement("div");o.className="pd-overlay on";o.id="pdOverlay";
-  o.innerHTML='<div class="pd-box"><button class="pd-close" onclick="closeDetail()">&times;</button><img class="pd-img" src="'+p.img+'" alt="'+p.name+'"><div class="pd-name">'+p.name+'</div><div class="pd-desc">'+p.desc+'</div><div class="pd-price">¥'+p.price+'<s>¥'+p.orig+'</s></div><button class="pd-btn'+(i?' in':'')+'" onclick="addCart('+p.id+',this);closeDetail()">'+(i?'已添加':'加入购物袋')+' — ¥'+p.price+'</button></div>';
+  o.innerHTML='<div class="pd-box"><button class="pd-close" onclick="closeDetail()">&times;</button><div class="pd-gallery"><div class="slides" id="pdSlides">'+imgs.map(function(img,j){return'<img src="'+img+'" alt="'+p.name+'">';}).join('')+'</div><div class="pd-dots" id="pdDots">'+dots+'</div><button class="pd-prev" onclick="slidePd(-1)">&lsaquo;</button><button class="pd-next" onclick="slidePd(1)">&rsaquo;</button></div><div class="pd-name">'+p.name+'</div><div class="pd-desc">'+p.desc+'</div><div class="pd-price">¥'+p.price+'<s>¥'+p.orig+'</s></div><button class="pd-btn'+(i?' in':'')+'" onclick="addCart('+p.id+',this);closeDetail()">'+(i?'已添加':'加入购物袋')+' — ¥'+p.price+'</button></div>';
   document.body.appendChild(o);
+  o._slideIdx=0;o._slideCount=imgs.length;
   o.onclick=function(e){if(e.target===o)closeDetail()}
 }
-function closeDetail(){var o=document.getElementById("pdOverlay");if(o)o.remove()}
+var slideTimer;
+function slidePd(dir){
+  var o=document.getElementById("pdOverlay");if(!o)return;
+  var count=o._slideCount;if(!count||count<=1)return;
+  o._slideIdx=(o._slideIdx+dir+count)%count;
+  document.getElementById("pdSlides").style.transform='translateX(-'+(o._slideIdx*100)+'%)';
+  var dots=document.getElementById("pdDots").children;
+  for(var i=0;i<dots.length;i++){dots[i].classList.toggle('on',i===o._slideIdx);}
+  clearTimeout(slideTimer);
+  slideTimer=setTimeout(function(){slidePd(1)},4000);
+}
+function closeDetail(){
+  clearTimeout(slideTimer);
+  var o=document.getElementById("pdOverlay");if(o)o.remove()
+}
+var o=document.getElementById("pdOverlay");if(o)o.remove()}
 function closePay(){var o=document.getElementById("payOverlay");if(o)o.remove()}
 </script>
 </body>
