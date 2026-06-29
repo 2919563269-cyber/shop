@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
@@ -199,29 +199,19 @@ a{text-decoration:none;color:inherit}
 /* ===== 支付弹窗 ===== */
 .pay-overlay{position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:500;display:none}
 .pay-overlay.on{display:block}
-.pay-box{
-  position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);
-  background:#1a1a1a;border-radius:16px;z-index:501;
-  width:90vw;max-width:360px;padding:24px 20px 20px;display:none;
-}
+.pay-box{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);background:#1a1a1a;border-radius:16px;z-index:501;width:94vw;max-width:430px;padding:24px 14px 20px;display:none}
 .pay-box.on{display:block}
-.pay-close{position:absolute;top:12px;right:16px;color:#999;font-size:24px;padding:0}
-.pay-title{font-size:20px;font-weight:600;color:#fff;text-align:center;margin-bottom:20px;letter-spacing:.04em}
-.pay-tabs{display:flex;gap:10px;margin-bottom:20px}
-.pay-tab{
-  flex:1;padding:12px;border:1px solid #333;border-radius:10px;
-  color:#999;font-size:14px;font-weight:500;text-align:center;
-  transition:all .2s;
-}
-.pay-tab.on{border-color:#fff;color:#fff;background:rgba(255,255,255,.06)}
-.pay-qr{text-align:center;display:none}
-.pay-qr.on{display:block}
-.pay-qr .qr-img{display:inline-block;padding:16px;background:#fff;border-radius:14px;margin-bottom:12px}
-.pay-qr .qr-img img{width:180px;height:180px}
-.pay-qr .qr-label{font-size:15px;font-weight:600;color:#fff;margin-bottom:6px}
-.pay-qr .qr-hint{font-size:12px;color:#999;margin-bottom:6px}
-.pay-qr .qr-amount{font-size:24px;font-weight:700;color:#fff}
-.pay-note{text-align:center;padding-top:16px;border-top:1px solid #333;margin-top:6px}
+.pay-close{position:absolute;top:10px;right:14px;color:#999;font-size:24px;padding:0}
+.pay-title{font-size:18px;font-weight:600;color:#fff;text-align:center;margin-bottom:16px;letter-spacing:.04em}
+.pay-qr-row{display:flex;gap:8px;justify-content:center;margin-bottom:12px}
+.pay-qr{text-align:center;flex:1}
+.pay-qr .qr-img{display:inline-block;padding:10px;background:#fff;border-radius:12px;margin-bottom:8px}
+.pay-qr .qr-img img{width:140px;height:140px;display:block}
+.pay-qr .qr-label{font-size:13px;font-weight:600;color:#fff;margin-bottom:4px}
+.pay-qr .qr-hint{font-size:11px;color:#999;margin-bottom:4px}
+.pay-qr .qr-amount{font-size:18px;font-weight:700;color:#fff}
+.pay-qr-amount{text-align:center;font-size:20px;font-weight:700;color:#fff;margin-bottom:10px}
+.pay-note{text-align:center;padding-top:14px;border-top:1px solid #333;margin-top:4px}
 .pay-note p{font-size:12px;color:#999;line-height:1.8}
 .pay-note strong{color:#fff}
 
@@ -374,17 +364,11 @@ document.addEventListener("DOMContentLoaded",init);
 function showPay(){
   var total=cart.reduce(function(s,c){var p=products.find(function(x){return x.id===c.id});return s+(p?p.price*c.qty:0)},0);
   var o=document.createElement("div");o.className="pay-overlay on";o.id="payOverlay";
-  o.innerHTML='<div class="pay-box on"><button class="pay-close" onclick="closePay()">&times;</button><div class="pay-title">选择支付方式</div><div class="pay-tabs"><button class="pay-tab on" onclick="switchPay(\"wx\")">💚 微信支付</button><button class="pay-tab" onclick="switchPay(\"zfb\")">💙 支付宝</button></div><div class="pay-qr on" id="payWx"><div class="qr-img"><img src="images/wechat-pay.jpg" alt="微信支付"></div><div class="qr-label">微信支付</div><div class="qr-hint">请使用微信扫一扫</div><div class="qr-amount">¥'+total.toLocaleString("zh-CN")+'</div></div><div class="pay-qr" id="payZfb"><div class="qr-img"><img src="images/alipay.jpg" alt="支付宝"></div><div class="qr-label">支付宝</div><div class="qr-hint">请使用支付宝扫一扫</div><div class="qr-amount">¥'+total.toLocaleString("zh-CN")+'</div></div><div class="pay-note"><p>支付遇到问题？联系客服微信：<strong style="color:#07C160">njknjk22002</strong></p></div></div>';
+  o.innerHTML='<div class="pay-box on"><button class="pay-close" onclick="closePay()">&times;</button><div class="pay-title">选择支付方式</div><div class="pay-qr-row"><div class="pay-qr"><div class="qr-img"><img src="images/alipay.jpg" alt="支付宝"></div><div class="qr-label">支付宝</div><div class="qr-hint">请使用支付宝扫一扫</div></div><div class="pay-qr"><div class="qr-img"><img src="images/wechat-pay.jpg" alt="微信支付"></div><div class="qr-label">微信支付</div><div class="qr-hint">请使用微信扫一扫</div></div></div><div class="pay-qr-amount">应付金额：¥'+total.toLocaleString("zh-CN")+'</div><div class="pay-note"><p>支付遇到问题？联系客服微信：<strong style="color:#07C160">njknjk22002</strong></p></div></div>';
   document.body.appendChild(o);
-  o.onclick=function(e){if(e.target===o)closePay()};window._payTab="wx"
+  o.onclick=function(e){if(e.target===o)closePay()}
 }
 function closePay(){var o=document.getElementById("payOverlay");if(o)o.remove()}
-function switchPay(t){
-  window._payTab=t;
-  document.querySelectorAll(".pay-tab").forEach(function(b){b.classList.toggle("on",b.textContent.includes(t==="wx"?"微信":"支付宝"))});
-  document.getElementById("payWx").classList.toggle("on",t==="wx");
-  document.getElementById("payZfb").classList.toggle("on",t==="zfb")
-}
 </script>
 </body>
 </html>
