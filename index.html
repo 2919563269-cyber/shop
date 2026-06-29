@@ -238,6 +238,13 @@ a{text-decoration:none;color:inherit}
 .pd-price s{font-size:16px;color:#999;margin-left:8px;font-weight:400}
 .pd-btn{display:block;width:100%;padding:14px;background:#111;color:#fff;border:none;border-radius:12px;font-size:16px;font-weight:600;letter-spacing:.04em}
 .pd-btn.in{background:#555}
+/* ===== 尺码选择 ===== */
+.pd-sizes{margin-bottom:16px}
+.pd-sizes-label{font-size:13px;color:#666;margin-bottom:8px}
+.pd-sizes-row{display:flex;flex-wrap:wrap;gap:8px}
+.pd-size{min-width:44px;height:36px;padding:0 12px;border:1px solid #ddd;border-radius:8px;background:#fff;font-size:13px;color:#333;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .2s}
+.pd-size.on{border-color:#111;background:#111;color:#fff}
+
 
 /* 桌面居中 */
 @media(min-width:431px){
@@ -295,35 +302,35 @@ a{text-decoration:none;color:inherit}
 
 <script>
 var products=[
-{id:10,name:"Lvv轻奢连帽卫衣",cat:"卫衣",price:129,orig:349,img:"images/product_23.jpg",desc:"顶级版本轻奢系列连帽卫衣",tag:"热卖"},
-{id:7,name:"潮牌轻奢牛仔外套",cat:"外套",price:228,orig:599,img:"images/product_15.jpg",desc:"高版本轻奢上衣独家款式",tag:"新品"},
-{id:8,name:"连帽夹克外套",cat:"外套",price:99,orig:299,img:"images/product_16.jpg",desc:"独家版本高质量百搭时尚",tag:"热卖"},
-{id:9,name:"Lvv拉链棒球开衫外套",cat:"外套",price:138.8,orig:369,img:"images/product_17.jpg",desc:"新版顶级版本万针刺绣",tag:"热卖"},
-{id:17,name:"克罗心破洞毛衣",cat:"外套",price:89,orig:259,img:"images/product_18.jpg",desc:"新款高版本十字架皮标刺绣",tag:"新品"},
-{id:24,name:"普拉达假两件针织衫",cat:"外套",price:129,orig:349,img:"images/product_19.jpg",desc:"市面最高版本羊毛衬衫拼接",tag:"热卖"},
-{id:27,name:"满印连帽加棉外套",cat:"外套",price:179,orig:469,img:"images/product_20.jpg",desc:"秋季轻奢新品高品质现货",tag:"新品"},
-{id:28,name:"普拉达高版本鹿皮外套",cat:"外套",price:279,orig:699,img:"images/product_21.jpg",desc:"三标齐全独家版本高品质",tag:"新品"},
-{id:29,name:"大鹅排骨羽绒服",cat:"外套",price:269,orig:699,img:"images/product_22.jpg",desc:"秋季轻奢新品高品质现货",tag:"新品"},
-{id:23,name:"克罗心十字架贴布蓝牛仔裤",cat:"裤子",price:89,orig:249,img:"images/product_12.jpg",desc:"新款高版本轻奢男女同款广州现货",tag:"新品"},
-{id:2,name:"克罗心复古黑色牛仔裤",cat:"裤子",price:69,orig:199,img:"images/product_2.jpg",desc:"独家版本克罗心十字架休闲",tag:"热卖"},
-{id:3,name:"美式高街牛仔短裤",cat:"裤子",price:59,orig:169,img:"images/product_3.jpg",desc:"夏季宽松直筒松紧腰潮流",tag:"新品"},
-{id:4,name:"迪奥黑色刺绣牛仔裤",cat:"裤子",price:79,orig:229,img:"images/product_4.jpg",desc:"高版本揭阳轻奢黑色刺绣",tag:"热卖"},
-{id:5,name:"福神浅蓝复古刺绣牛仔裤",cat:"裤子",price:79,orig:229,img:"images/product_5.jpg",desc:"高版本揭阳轻奢浅蓝复古",tag:"热卖"},
-{id:6,name:"普拉达浅蓝三角标牛仔裤",cat:"裤子",price:79,orig:229,img:"images/product_6.jpg",desc:"高版本揭阳轻奢三角标",tag:"热卖"},
-{id:11,name:"广州高版本潮牌牛仔裤",cat:"裤子",price:98,orig:269,img:"images/product_7.jpg",desc:"广州高版本潮牌百搭",tag:"新品"},
-{id:15,name:"高品质普拉达直筒牛仔裤",cat:"裤子",price:48.8,orig:149,img:"images/product_8.jpg",desc:"直筒修身百搭揭阳现货",tag:"热卖"},
-{id:16,name:"克罗心潮牌直筒牛仔短裤",cat:"裤子",price:58,orig:169,img:"images/product_9.jpg",desc:"十字架拼接潮牌直筒",tag:"热卖"},
-{id:18,name:"战马刺绣休闲长裤",cat:"裤子",price:79,orig:229,img:"images/product_10.jpg",desc:"网红刺绣高版本直筒轻奢",tag:"热卖"},
-{id:19,name:"天丝醋酸轻奢休闲裤",cat:"裤子",price:128,orig:329,img:"images/product_11.jpg",desc:"高版本新款直筒薄款微宽松",tag:"新品"},
-{id:25,name:"普拉达户外弯刀休闲长裤",cat:"裤子",price:88,orig:239,img:"images/product_13.jpg",desc:"秋冬薄款三角休闲裤",tag:"新品"},
-{id:26,name:"普拉达黑色直筒牛仔裤",cat:"裤子",price:78,orig:219,img:"images/product_14.jpg",desc:"最新款轻奢高端潮牌修身",tag:"热卖"},
-{id:1,name:"Onitsuka Tiger MEXICO 66 亚瑟士鬼冢虎复古鞋",cat:"鞋子",price:150,orig:399,img:"images/product_1.jpg",desc:"高端品质工厂直发复古经典",tag:"热卖"},
-{id:12,name:"字母logo刺绣圆领短袖T恤",cat:"短袖",price:79.9,orig:219,img:"images/product_22.jpg",desc:"纯原1:1爆款高版本百搭",tag:"热卖"},
-{id:13,name:"普拉达圆领刺绣短袖T恤",cat:"短袖",price:58,orig:169,img:"images/product_21.jpg",desc:"高品质T恤三标齐全",tag:"热卖"},
-{id:14,name:"梅花刺绣Polo衫短袖",cat:"短袖",price:35.8,orig:119,img:"images/product_20.jpg",desc:"新款百搭修身Polo衫",tag:"热卖"},
-{id:20,name:"广州轻奢满印字母短袖T恤",cat:"短袖",price:99,orig:269,img:"images/product_19.jpg",desc:"最高版本商务男女同款",tag:"新品"},
-{id:21,name:"普拉达立体剪裁短袖T恤",cat:"短袖",price:65,orig:189,img:"images/product_18.jpg",desc:"新款纯棉超高版本男女同款",tag:"新品"},
-{id:22,name:"普拉达Polo衫三角标短袖",cat:"短袖",price:55,orig:159,img:"images/product_17.jpg",desc:"高版本轻奢潮牌商务款",tag:"新品"}
+{id:10,name:"Lvv轻奢连帽卫衣",cat:"卫衣",sizes:["M","L","XL","2XL"],price:129,orig:349,img:"images/product_23.jpg",desc:"顶级版本轻奢系列连帽卫衣",tag:"热卖"},
+{id:7,name:"潮牌轻奢牛仔外套",cat:"外套",sizes:["M","L","XL","2XL"],price:228,orig:599,img:"images/product_15.jpg",desc:"高版本轻奢上衣独家款式",tag:"新品"},
+{id:8,name:"连帽夹克外套",cat:"外套",sizes:["M","L","XL","2XL"],price:99,orig:299,img:"images/product_16.jpg",desc:"独家版本高质量百搭时尚",tag:"热卖"},
+{id:9,name:"Lvv拉链棒球开衫外套",cat:"外套",sizes:["M","L","XL","2XL"],price:138.8,orig:369,img:"images/product_17.jpg",desc:"新版顶级版本万针刺绣",tag:"热卖"},
+{id:17,name:"克罗心破洞毛衣",cat:"外套",sizes:["M","L","XL","2XL"],price:89,orig:259,img:"images/product_18.jpg",desc:"新款高版本十字架皮标刺绣",tag:"新品"},
+{id:24,name:"普拉达假两件针织衫",cat:"外套",sizes:["M","L","XL","2XL"],price:129,orig:349,img:"images/product_19.jpg",desc:"市面最高版本羊毛衬衫拼接",tag:"热卖"},
+{id:27,name:"满印连帽加棉外套",cat:"外套",sizes:["M","L","XL","2XL"],price:179,orig:469,img:"images/product_20.jpg",desc:"秋季轻奢新品高品质现货",tag:"新品"},
+{id:28,name:"普拉达高版本鹿皮外套",cat:"外套",sizes:["M","L","XL","2XL"],price:279,orig:699,img:"images/product_21.jpg",desc:"三标齐全独家版本高品质",tag:"新品"},
+{id:29,name:"大鹅排骨羽绒服",cat:"外套",sizes:["M","L","XL","2XL"],price:269,orig:699,img:"images/product_22.jpg",desc:"秋季轻奢新品高品质现货",tag:"新品"},
+{id:23,name:"克罗心十字架贴布蓝牛仔裤",cat:"裤子",sizes:["28","29","30","31","32","33","34"],price:89,orig:249,img:"images/product_12.jpg",desc:"新款高版本轻奢男女同款广州现货",tag:"新品"},
+{id:2,name:"克罗心复古黑色牛仔裤",cat:"裤子",sizes:["28","29","30","31","32","33","34"],price:69,orig:199,img:"images/product_2.jpg",desc:"独家版本克罗心十字架休闲",tag:"热卖"},
+{id:3,name:"美式高街牛仔短裤",cat:"裤子",sizes:["28","29","30","31","32","33","34"],price:59,orig:169,img:"images/product_3.jpg",desc:"夏季宽松直筒松紧腰潮流",tag:"新品"},
+{id:4,name:"迪奥黑色刺绣牛仔裤",cat:"裤子",sizes:["28","29","30","31","32","33","34"],price:79,orig:229,img:"images/product_4.jpg",desc:"高版本揭阳轻奢黑色刺绣",tag:"热卖"},
+{id:5,name:"福神浅蓝复古刺绣牛仔裤",cat:"裤子",sizes:["28","29","30","31","32","33","34"],price:79,orig:229,img:"images/product_5.jpg",desc:"高版本揭阳轻奢浅蓝复古",tag:"热卖"},
+{id:6,name:"普拉达浅蓝三角标牛仔裤",cat:"裤子",sizes:["28","29","30","31","32","33","34"],price:79,orig:229,img:"images/product_6.jpg",desc:"高版本揭阳轻奢三角标",tag:"热卖"},
+{id:11,name:"广州高版本潮牌牛仔裤",cat:"裤子",sizes:["28","29","30","31","32","33","34"],price:98,orig:269,img:"images/product_7.jpg",desc:"广州高版本潮牌百搭",tag:"新品"},
+{id:15,name:"高品质普拉达直筒牛仔裤",cat:"裤子",sizes:["28","29","30","31","32","33","34"],price:48.8,orig:149,img:"images/product_8.jpg",desc:"直筒修身百搭揭阳现货",tag:"热卖"},
+{id:16,name:"克罗心潮牌直筒牛仔短裤",cat:"裤子",sizes:["28","29","30","31","32","33","34"],price:58,orig:169,img:"images/product_9.jpg",desc:"十字架拼接潮牌直筒",tag:"热卖"},
+{id:18,name:"战马刺绣休闲长裤",cat:"裤子",sizes:["28","29","30","31","32","33","34"],price:79,orig:229,img:"images/product_10.jpg",desc:"网红刺绣高版本直筒轻奢",tag:"热卖"},
+{id:19,name:"天丝醋酸轻奢休闲裤",cat:"裤子",sizes:["28","29","30","31","32","33","34"],price:128,orig:329,img:"images/product_11.jpg",desc:"高版本新款直筒薄款微宽松",tag:"新品"},
+{id:25,name:"普拉达户外弯刀休闲长裤",cat:"裤子",sizes:["28","29","30","31","32","33","34"],price:88,orig:239,img:"images/product_13.jpg",desc:"秋冬薄款三角休闲裤",tag:"新品"},
+{id:26,name:"普拉达黑色直筒牛仔裤",cat:"裤子",sizes:["28","29","30","31","32","33","34"],price:78,orig:219,img:"images/product_14.jpg",desc:"最新款轻奢高端潮牌修身",tag:"热卖"},
+{id:1,name:"Onitsuka Tiger MEXICO 66 亚瑟士鬼冢虎复古鞋",cat:"鞋子",sizes:["38","39","40","41","42","43","44"],price:150,orig:399,img:"images/product_1.jpg",desc:"高端品质工厂直发复古经典",tag:"热卖"},
+{id:12,name:"字母logo刺绣圆领短袖T恤",cat:"短袖",sizes:["M","L","XL","2XL"],price:79.9,orig:219,img:"images/product_22.jpg",desc:"纯原1:1爆款高版本百搭",tag:"热卖"},
+{id:13,name:"普拉达圆领刺绣短袖T恤",cat:"短袖",sizes:["M","L","XL","2XL"],price:58,orig:169,img:"images/product_21.jpg",desc:"高品质T恤三标齐全",tag:"热卖"},
+{id:14,name:"梅花刺绣Polo衫短袖",cat:"短袖",sizes:["M","L","XL","2XL"],price:35.8,orig:119,img:"images/product_20.jpg",desc:"新款百搭修身Polo衫",tag:"热卖"},
+{id:20,name:"广州轻奢满印字母短袖T恤",cat:"短袖",sizes:["M","L","XL","2XL"],price:99,orig:269,img:"images/product_19.jpg",desc:"最高版本商务男女同款",tag:"新品"},
+{id:21,name:"普拉达立体剪裁短袖T恤",cat:"短袖",sizes:["M","L","XL","2XL"],price:65,orig:189,img:"images/product_18.jpg",desc:"新款纯棉超高版本男女同款",tag:"新品"},
+{id:22,name:"普拉达Polo衫三角标短袖",cat:"短袖",sizes:["M","L","XL","2XL"],price:55,orig:159,img:"images/product_17.jpg",desc:"高版本轻奢潮牌商务款",tag:"新品"}
 ];
 var catList=["all","卫衣","外套","裤子","鞋子","帽子","短袖"];
 function getCategories(){return catList}
@@ -352,7 +359,12 @@ function renderProds(cat){
   var l=cat==="all"?products:products.filter(function(p){return p.cat===cat});
   document.getElementById("productsGrid").innerHTML=l.map(cardHTML).join("")
 }
-function addCart(id,btn){
+function addCartSize(id,btn){
+  var o=document.getElementById("pdOverlay");
+  var size=o&&o._selSize?o._selSize:"均码";
+  addCart(id,btn,size);
+}
+function addCart(id,btn,size){
   var p=products.find(function(x){return x.id===id});if(!p)return;
   var e=cart.find(function(c){return c.id===id});
   if(e)e.qty+=1;else cart.push({id,qty:1});
@@ -396,15 +408,22 @@ function showDetail(id){
   var p=products.find(function(x){return x.id===id});if(!p)return;
   var i=cart.find(function(c){return c.id===id});
   var imgs=p.imgs&&p.imgs.length?p.imgs:[p.img];
-  var dots='';for(var j=0;j<imgs.length;j++){dots+='<span class="pd-dot'+(j===0?' on':'')+'"></span>';}
+  var sizes=p.sizes&&p.sizes.length?p.sizes:["均码"];
+  var dots='',sizeBtns='';
+  for(var j=0;j<imgs.length;j++){dots+='<span class="pd-dot'+(j===0?' on':'')+'"></span>';}
+  for(var k=0;k<sizes.length;k++){sizeBtns+='<span class="pd-size'+(k===0?' on':'')+'" onclick="selSize(this,''+sizes[k]+'')">'+sizes[k]+'</span>';}
   var o=document.createElement("div");o.className="pd-overlay on";o.id="pdOverlay";
-  o.innerHTML='<div class="pd-box"><button class="pd-close" onclick="closeDetail()">&times;</button><div class="pd-gallery"><div class="slides" id="pdSlides">'+imgs.map(function(img,j){return'<img src="'+img+'" alt="'+p.name+'">';}).join('')+'</div><div class="pd-dots" id="pdDots">'+dots+'</div><button class="pd-prev" onclick="slidePd(-1)">&lsaquo;</button><button class="pd-next" onclick="slidePd(1)">&rsaquo;</button></div><div class="pd-name">'+p.name+'</div><div class="pd-desc">'+p.desc+'</div><div class="pd-price">¥'+p.price+'<s>¥'+p.orig+'</s></div><button class="pd-btn'+(i?' in':'')+'" onclick="addCart('+p.id+',this);closeDetail()">'+(i?'已添加':'加入购物袋')+' — ¥'+p.price+'</button></div>';
+  o.innerHTML='<div class="pd-box"><button class="pd-close" onclick="closeDetail()">&times;</button><div class="pd-gallery"><div class="slides" id="pdSlides">'+imgs.map(function(img,j){return'<img src="'+img+'" alt="'+p.name+'">';}).join('')+'</div><div class="pd-dots" id="pdDots">'+dots+'</div><button class="pd-prev" onclick="slidePd(-1)">&lsaquo;</button><button class="pd-next" onclick="slidePd(1)">&rsaquo;</button></div><div class="pd-name">'+p.name+'</div><div class="pd-desc">'+p.desc+'</div><div class="pd-sizes"><div class="pd-sizes-label">尺码</div><div class="pd-sizes-row" id="pdSizes">'+sizeBtns+'</div></div><div class="pd-price">¥'+p.price+'<s>¥'+p.orig+'</s></div><button class="pd-btn'+(i?' in':'')+'" onclick="addCartSize('+p.id+',this)">'+(i?'已添加':'加入购物袋')+' — ¥'+p.price+'</button></div>';
   document.body.appendChild(o);
-  o._slideIdx=0;o._slideCount=imgs.length;
+  o._slideIdx=0;o._slideCount=imgs.length;o._selSize=sizes[0];
   o.onclick=function(e){if(e.target===o)closeDetail()}
 }
-var slideTimer;
-function slidePd(dir){
+function selSize(el,size){
+  var o=document.getElementById("pdOverlay");if(!o)return;
+  document.querySelectorAll("#pdSizes .pd-size").forEach(function(s){s.classList.remove("on")});
+  el.classList.add("on");o._selSize=size;
+}
+function slidePd(dir){{
   var o=document.getElementById("pdOverlay");if(!o)return;
   var count=o._slideCount;if(!count||count<=1)return;
   o._slideIdx=(o._slideIdx+dir+count)%count;
