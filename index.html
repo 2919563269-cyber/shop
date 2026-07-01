@@ -326,7 +326,7 @@ var products=[
 {id:26,name:"普拉达黑色直筒牛仔裤",cat:"裤子",sizes:["28","29","30","31","32","33","34"],price:78,orig:219,img:"images/product_14.jpg",desc:"最新款轻奢高端潮牌修身",tag:"热卖"},
 {id:1,name:"Onitsuka Tiger MEXICO 66 亚瑟士鬼冢虎复古鞋",cat:"鞋子",sizes:["38","39","40","41","42","43","44"],price:150,orig:399,img:"images/product_1.jpg",desc:"高端品质工厂直发复古经典",tag:"热卖"},
 ];
-var catList=["all","卫衣","外套","裤子","鞋子","帽子","短袖"];
+var catList=["all","卫衣","外套","裤子","鞋子","帽子"];
 function getCategories(){return catList}
 var cart=JSON.parse(localStorage.getItem("sc")||"[]"),cur="all";
 function init(){renderCats();renderProds("all");updateCart()}
