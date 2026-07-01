@@ -335,7 +335,7 @@ var products=[
 {id:22,name:"高版本普拉达Polo衫三角标轻奢潮牌商务款男女短袖",cat:"短袖",sizes:["M","L","XL","2XL"],price:55,orig:159,img:"images/product_17.jpg",desc:"高版本轻奢潮牌商务款",tag:"新品"},
 {id:1,name:"Onitsuka Tiger MEXICO 66 亚瑟士鬼冢虎复古鞋",cat:"鞋子",sizes:["38","39","40","41","42","43","44"],price:150,orig:399,img:"images/product_1.jpg",desc:"高端品质工厂直发复古经典",tag:"热卖"},
 ];
-var catList=["all","卫衣","外套","裤子","鞋子","短袖","帽子"];
+var catList=["all","卫衣","外套","裤子","短袖","鞋子"];
 function getCategories(){return catList}
 var cart=JSON.parse(localStorage.getItem("sc")||"[]"),cur="all";
 function init(){renderCats();renderProds("all");updateCart()}
