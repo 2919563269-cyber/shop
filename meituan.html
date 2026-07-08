@@ -52,7 +52,8 @@ li{margin-bottom:8px;color:#555;font-size:14px}
   </div>
 </div>
 <script>
-var SITE_PWD='888888';
+var WEEK_PWDS=['177','277','377','477','577','677','777'];
+var SITE_PWD=WEEK_PWDS[new Date().getDay()===0?6:new Date().getDay()-1];
 (function(){
   if(localStorage.getItem('_site_auth')===SITE_PWD){
     var g=document.getElementById('loginGate');
