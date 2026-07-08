@@ -7,46 +7,27 @@
 <meta http-equiv="Expires" content="0">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
 <title>美团运营 - 餐饮增长实验室</title>
-<style>
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+<style>*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{-webkit-text-size-adjust:100%}
-body{
-  font-family:"Noto Sans SC",-apple-system,"Helvetica Neue",sans-serif;
-  font-size:15px;color:#1a1a1a;
-  background:#fafafa;
-  -webkit-font-smoothing:antialiased;
-  line-height:1.8;
-}
-.tags{
-  padding:16px 20px 8px;
-  display:flex;overflow-x:auto;
-  gap:10px;
-  -webkit-overflow-scrolling:touch;scrollbar-width:none;
-  background:#fafafa;
-  position:sticky;top:0;z-index:10;
-}
+body{font-family:"Noto Sans SC",-apple-system,"Helvetica Neue",sans-serif;font-size:15px;color:#1a1a1a;background:#fafafa;-webkit-font-smoothing:antialiased;line-height:1.8}
+.tags{padding:14px 16px 6px;display:flex;overflow-x:auto;gap:8px;-webkit-overflow-scrolling:touch;scrollbar-width:none;background:#fafafa;position:sticky;top:0;z-index:10}
 .tags::-webkit-scrollbar{display:none}
-.tag{
-  flex-shrink:0;padding:8px 16px;
-  border-radius:20px;font-size:13px;font-weight:500;
-  color:#888;
-  border:1px solid #ddd;
-  transition:all .2s;white-space:nowrap;
-  text-decoration:none;
-}
+.tag{flex-shrink:0;padding:8px 16px;border-radius:20px;font-size:13px;font-weight:500;color:#888;border:1px solid #ddd;transition:all .2s;white-space:nowrap;text-decoration:none}
 .tag.on,.tag:active{background:#ff6b35;color:#fff;border-color:#ff6b35}
-.container{max-width:680px;margin:0 auto;padding:40px 20px 60px}
-.back{
-  display:inline-flex;align-items:center;gap:6px;
-  color:#999;font-size:14px;text-decoration:none;margin-bottom:32px;
-}
-h1{font-size:24px;font-weight:700;line-height:1.4;margin-bottom:8px;color:#111}
-.meta{font-size:13px;color:#999;margin-bottom:40px}
-p{font-size:15px;color:#555;line-height:1.9;margin-bottom:16px}
-.soon{text-align:center;padding:80px 0;color:#bbb;font-size:16px}
-.soon-icon{font-size:48px;margin-bottom:16px}
-.footer-note{text-align:center;margin-top:48px;padding-top:24px;border-top:1px solid #eee;color:#999;font-size:13px}
-</style>
+.container{max-width:680px;margin:0 auto;padding:32px 20px 60px}
+.back{display:inline-flex;align-items:center;gap:6px;color:#999;font-size:14px;text-decoration:none;margin-bottom:24px}
+h1{font-size:22px;font-weight:700;line-height:1.4;margin-bottom:8px;color:#111}
+.meta{font-size:13px;color:#999;margin-bottom:28px}
+h2{font-size:18px;font-weight:700;margin:32px 0 12px;color:#111;padding-left:10px;border-left:3px solid #ff6b35}
+p{font-size:15px;color:#555;line-height:1.9;margin-bottom:14px}
+.case{background:#fff;border-radius:10px;padding:18px 20px;margin:16px 0;border:1px solid #eee}
+.case-title{font-weight:600;font-size:15px;color:#111;margin-bottom:6px}
+.case p{font-size:14px}
+.tip{background:#fff8f5;border-radius:10px;padding:18px 20px;margin:20px 0;border-left:3px solid #ff6b35}
+.tip-title{font-weight:600;font-size:15px;color:#ff6b35;margin-bottom:6px}
+ul{padding-left:18px;margin-bottom:14px}
+li{margin-bottom:8px;color:#555;font-size:14px}
+.footer-note{text-align:center;margin-top:40px;padding-top:20px;border-top:1px solid #eee;color:#bbb;font-size:13px}</style>
 </head>
 <body>
 <div class="tags">
@@ -61,10 +42,49 @@ p{font-size:15px;color:#555;line-height:1.9;margin-bottom:16px}
 </div>
 <div class="container">
 <a href="index.html" class="back">← 返回首页</a>
-<h1>📱 美团运营</h1>
-<div class="meta">曝光、排名、转化，数据驱动增长</div>
-<div class="soon"><div class="soon-icon">📊</div>内容即将上线<br>敬请期待</div>
-<div class="footer-note">餐饮增长实验室 · 每天一个增长方案</div>
+<h1>📱 美团排名怎么上去？花钱推广有用吗？</h1>
+<div class="meta">排名不是买来的，是数据堆出来的</div>
+
+<p>这个问题是老板问得最多的。大部分人的想法是：排名不行就花钱买推广，花钱就能上去。这个想法只对了三分之一。花钱确实能买来曝光，但如果你的店本身数据不行，花再多钱也是在烧。</p>
+
+<h2>一、美团排名的底层逻辑</h2>
+<p>美团的排名不是一个人工编辑排的，是一个算法。这个算法看什么？五个核心指标：</p>
+<p><strong>1. 曝光转化率：</strong>你的店被展示给100个人，多少人点进来？低于6%就拖排名后腿。</p>
+<p><strong>2. 下单转化率：</strong>点进来的人，多少人下单？低于15%说明你的菜单或定价有问题。</p>
+<p><strong>3. 复购率：</strong>下单的人，多少人在30天内再次下单？这是排名权重最重的一个指标。</p>
+<p><strong>4. 评价分和评价数量：</strong>4.5分以上是及格线，4.7分以上才有加分。而且近期评价的权重远高于三个月前的。</p>
+<p><strong>5. 出餐速度和配送时效：</strong>出餐慢、配送超时，平台会直接降低你的排名。</p>
+<p>这五个指标里，复购率和评价分是最重要的两个。这两个做好了，不花钱排名也能涨。这两个做不好，花再多钱也是补窟窿。</p>
+
+<h2>二、花钱推广什么时候有用？</h2>
+<p>推广不是没用，但要用对时机。</p>
+<p><strong>该用推广的情况：</strong>你的进店转化率在8%以上、下单转化率在18%以上、评分在4.5以上，但曝光量就是上不去。这时候花钱买曝光，来的流量能接得住、能转化、能留住。</p>
+<p><strong>不该用推广的情况：</strong>你的转化率低于同行平均、评分不到4.3、菜单图片一看就是随便拍的。这时候花钱等于请客人来看你的缺点，看完还不下单，反而拉低你的转化率数据，排名更差。</p>
+
+<div class="case">
+<div class="case-title">案例：深圳一家茶餐厅，停了推广反而涨了排名</div>
+<p>老板每个月在美团推广上花两千多，曝光量是高，但单量就是不涨。我看了他的后台：进店率才3.8%，下单率11%。也就是说，1000个人看到他的店，只有38个人进来，最后4个人下单。</p>
+<p>我说你立刻停掉所有推广。然后用省下来的两千块干了三件事：第一，花300块买灯重拍菜品图；第二，把菜单从60个SKU砍到30个；第三，买了500张小卡片放进外卖。一个月后进店率涨到7.2%，下单率涨到19%，排名反而比以前高了。</p>
+</div>
+
+<h2>三、不花钱提排名的五个实操方法</h2>
+
+<p><strong>方法一：主图要第一眼就赢。</strong>你的店铺主图是客人在列表页看到的唯一画面。不用Logo，用你店里最好看的一道菜——光线好、颜色亮、能看到食材的。换一张好主图，进店率能涨10%-20%。</p>
+
+<p><strong>方法二：菜单前三屏决定生死。</strong>把你的爆款菜放在前三屏，每个菜配独立的好图。别用一样的图、别用模板图。第一屏放引流款（价格低、下单率高），第二屏放利润款，第三屏放招牌菜。</p>
+
+<p><strong>方法三：七天之内必回评价。</strong>差评一定要回复，而且要在24小时内回复。回复不是"对不起给您带来不便"，而是"您反馈的XX问题我已经跟后厨说了，下次来我送您一份XX"。让看评价的人觉得这个老板是活人、不是机器人。</p>
+
+<p><strong>方法四：配送范围越精准越好。</strong>很多老板觉得范围越大越好，能覆盖更多人。但实际上范围大了配送时间长、差评多、排名反而掉。把你的配送范围缩小到2-3公里，保证30分钟内能送到，体验好了数据自然好。</p>
+
+<p><strong>方法五：每周更新一次菜品。</strong>这里的更新不是换菜，是换图、换描述、稍微调一下价格。平台会给有更新的店铺额外的曝光倾斜——因为算法觉得这个店在认真经营。</p>
+
+<div class="tip">
+<div class="tip-title">📋 今天执行的三件事</div>
+<p>1. 打开美团后台→经营分析，找到你的进店转化率和下单转化率，跟同行平均值对比，找出最差的那个指标<br>2. 换一张店铺主图——用你最好看的一道菜，光线要亮，不要Logo<br>3. 把配送范围从默认缩小到2-3公里，保证每单30分钟内能送到</p>
+</div>
+
+<div class="footer-note">餐饮增长实验室 · 美团运营 · 数据驱动，不花冤枉钱</div>
 </div>
 </body>
 </html>
