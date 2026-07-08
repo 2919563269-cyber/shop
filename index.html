@@ -12,7 +12,7 @@ body{
   font-size:14px;color:#fff;
   background:#0f0f0f;
   -webkit-font-smoothing:antialiased;
-  overflow:hidden;
+  overflow-x:hidden;
 }
 .bg{
   position:fixed;inset:0;z-index:0;
@@ -30,10 +30,10 @@ body{
   background-image:radial-gradient(rgba(255,255,255,.03) 1px, transparent 1px);
   background-size:40px 40px;
 }
-.hero{
+.page{
   position:relative;z-index:1;
   width:100%;min-height:100vh;min-height:100svh;
-  display:flex;align-items:center;justify-content:center;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
   padding:48px 24px;
 }
 .hero-inner{text-align:center;max-width:360px}
@@ -49,13 +49,26 @@ body{
 }
 .hero-sub{font-size:15px;color:rgba(255,255,255,.6);line-height:1.8;margin-bottom:36px}
 .hero-divider{width:40px;height:1px;background:rgba(255,255,255,.2);margin:0 auto 36px}
-.hero-note{font-size:13px;color:rgba(255,255,255,.45);line-height:2.2}
+.hero-note{font-size:13px;color:rgba(255,255,255,.45);line-height:2.2;margin-bottom:32px}
 .hero-highlight{color:#ff6b35;font-weight:600}
+
+.hero-btn{
+  display:inline-block;
+  padding:14px 36px;
+  background:#ff6b35;
+  color:#fff;
+  font-size:15px;font-weight:600;
+  border-radius:8px;
+  letter-spacing:.04em;
+  transition:all .2s;
+  text-decoration:none;
+}
+.hero-btn:active{background:#e55a2b;transform:scale(.97)}
 </style>
 </head>
 <body>
 <div class="bg"><div class="bg-dots"></div></div>
-<section class="hero">
+<div class="page">
   <div class="hero-inner">
     <div class="hero-badge">RESTAURANT GROWTH LAB</div>
     <h1 class="hero-title">餐饮增长实验室</h1>
@@ -67,7 +80,8 @@ body{
       <span class="hero-highlight">专门帮助餐饮老板提高营业额</span><br>
       AI只是你的幕后生产工具
     </div>
+    <a href="article1.html" class="hero-btn">查看今日方案 →</a>
   </div>
-</section>
+</div>
 </body>
 </html>
