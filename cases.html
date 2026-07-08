@@ -6,65 +6,35 @@
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-<title>为什么套餐没人买？ - 餐饮增长实验室</title>
-<style>
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+<title>增长案例 - 餐饮增长实验室</title>
+<style>*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{-webkit-text-size-adjust:100%}
-body{
-  font-family:"Noto Sans SC",-apple-system,"Helvetica Neue",sans-serif;
-  font-size:15px;color:#1a1a1a;
-  background:#fafafa;
-  -webkit-font-smoothing:antialiased;
-  line-height:1.8;
-}
-.tags{
-  padding:16px 20px 8px;
-  display:flex;overflow-x:auto;
-  gap:10px;
-  -webkit-overflow-scrolling:touch;scrollbar-width:none;
-  background:#fafafa;
-  position:sticky;top:0;z-index:10;
-}
+body{font-family:"Noto Sans SC",-apple-system,"Helvetica Neue",sans-serif;font-size:15px;color:#1a1a1a;background:#0f0f0f;-webkit-font-smoothing:antialiased;line-height:1.8}
+.tags{padding:14px 16px 6px;display:flex;overflow-x:auto;gap:8px;-webkit-overflow-scrolling:touch;scrollbar-width:none;background:#0f0f0f;position:sticky;top:0;z-index:10}
 .tags::-webkit-scrollbar{display:none}
-.tag{
-  flex-shrink:0;padding:8px 16px;
-  border-radius:20px;font-size:13px;font-weight:500;
-  color:#888;
-  border:1px solid #ddd;
-  transition:all .2s;white-space:nowrap;
-  text-decoration:none;
-}
+.tag{flex-shrink:0;padding:8px 16px;border-radius:20px;font-size:13px;font-weight:500;color:rgba(255,255,255,.5);border:1px solid rgba(255,255,255,.2);transition:all .2s;white-space:nowrap;text-decoration:none}
 .tag.on,.tag:active{background:#ff6b35;color:#fff;border-color:#ff6b35}
-
-.container{max-width:680px;margin:0 auto;padding:32px 20px 60px}
-.back{
-  display:inline-flex;align-items:center;gap:6px;
-  color:#999;font-size:14px;text-decoration:none;margin-bottom:32px;
-}
-h1{font-size:24px;font-weight:700;line-height:1.4;margin-bottom:8px;color:#111}
-.meta{font-size:13px;color:#999;margin-bottom:32px}
-
-.script-box{
-  background:#fff;border-radius:12px;padding:28px 20px;
-  border:1px solid #eee;margin-bottom:24px;
-}
-.scene{font-size:13px;color:#ff6b35;font-weight:600;margin-bottom:4px;letter-spacing:.04em}
-.line{font-size:15px;color:#333;margin-bottom:14px;line-height:1.9}
-.line strong{color:#111}
-.time-dot{
-  display:inline-block;width:6px;height:6px;
-  background:#ff6b35;border-radius:50%;margin-right:8px;vertical-align:middle;
-}
-.tip-box{
-  background:#fff8f5;border-radius:10px;padding:20px 24px;
-  margin:28px 0;border-left:3px solid #ff6b35;
-}
-.tip-title{font-weight:600;font-size:15px;color:#ff6b35;margin-bottom:8px}
-.footer-note{text-align:center;margin-top:48px;padding-top:24px;border-top:1px solid #eee;color:#999;font-size:13px}
-</style>
+.container{max-width:680px;margin:0 auto;padding:0 0 60px}
+.back{display:inline-flex;align-items:center;gap:6px;color:rgba(255,255,255,.5);font-size:14px;text-decoration:none;margin:20px}
+.back:hover{color:#fff}
+.video-player{width:100%;aspect-ratio:16/9;background:#1a1a1a;position:relative;display:flex;align-items:center;justify-content:center;cursor:pointer}
+.video-player .play-btn{width:64px;height:64px;background:rgba(255,107,53,.9);border-radius:50%;display:flex;align-items:center;justify-content:center;transition:transform .2s}
+.video-player .play-btn svg{width:28px;height:28px;fill:#fff;margin-left:4px}
+.video-player:active .play-btn{transform:scale(.9)}
+.video-info{padding:20px}
+.video-title{font-size:18px;font-weight:700;color:#fff;margin-bottom:6px}
+.video-meta{font-size:13px;color:rgba(255,255,255,.4);margin-bottom:20px}
+.video-list{padding:0 20px}
+.v-item{display:flex;gap:12px;padding:14px 0;border-bottom:1px solid rgba(255,255,255,.06);text-decoration:none;color:inherit}
+.v-thumb{width:120px;aspect-ratio:16/9;background:#1a1a1a;border-radius:8px;flex-shrink:0;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
+.v-thumb .mini-play{width:32px;height:32px;background:rgba(255,107,53,.85);border-radius:50%;display:flex;align-items:center;justify-content:center}
+.v-thumb .mini-play svg{width:14px;height:14px;fill:#fff;margin-left:2px}
+.v-text{flex:1;min-width:0}
+.v-text .vt{font-size:14px;font-weight:500;color:#fff;line-height:1.4;margin-bottom:4px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.v-text .vm{font-size:12px;color:rgba(255,255,255,.35)}
+.footer-note{text-align:center;margin-top:40px;padding:20px;color:rgba(255,255,255,.2);font-size:13px}</style>
 </head>
 <body>
-
 <div class="tags">
   <a href="index.html" class="tag">活动模板</a>
   <a href="cases.html" class="tag on">增长案例</a>
@@ -75,85 +45,42 @@ h1{font-size:24px;font-weight:700;line-height:1.4;margin-bottom:8px;color:#111}
   <a href="ketang.html" class="tag">老板课堂</a>
 </div>
 
-<div class="container">
-<a href="index.html" class="back">← 返回首页</a>
-<h1>🎬 为什么套餐没人买？</h1>
-<div class="meta">5分钟短视频脚本 · 实录案例 · 拿来就能用</div>
+<a href="index.html" class="back">← 返回</a>
 
-<div class="script-box">
-<div class="scene">【0:00 — 开场：一把抓住老板】</div>
-<div class="line">我干了18年餐饮，见过最蠢的事情就是把菜单上所有菜拼成套餐，然后等着客人来点。结果呢？一个套餐一天卖不出去三份。你猜问题出在哪？不是你菜不好吃，是你的套餐设计从一开始就错了。今天我用三个我亲手改过的店给你讲清楚，听完今天就能改。</div>
+<div class="video-player" onclick="this.querySelector('.play-btn').style.transform='scale(.9)';setTimeout(()=>this.querySelector('.play-btn').style.transform='',200)">
+  <div class="play-btn">
+    <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+  </div>
 </div>
 
-<div class="script-box">
-<div class="scene">【0:30 — 第一个重点：套餐不是"便宜"，是"不用想"】</div>
-<div class="line">去年广州一个做煲仔饭的老板找我，他说他做了两个套餐：一个26、一个38，比单点便宜了四五块。我说你打开后台给我看数据。你猜怎么着？客人进店之后在套餐页停了不到两秒就划走了，全跑去单品页一个一个加。</div>
-<div class="line">为什么？因为他的套餐名字叫"超值双拼煲仔饭套餐"。客人不知道双拼是什么、里面有什么、够不够吃。你得把套餐名字写明白——不是"超值套餐"，是<span class="time-dot"></span><strong>"一肉一菜+汤，一个人刚好"</strong>。客人一看就知道自己要不要。</div>
-<div class="line">改名之后，同一个套餐，三天涨了百分之三十。</div>
+<div class="video-info">
+  <div class="video-title">为什么套餐没人买？三个坑你可能全踩了</div>
+  <div class="video-meta">5分钟 · 3个真实案例 · 今天就能改</div>
 </div>
 
-<div class="script-box">
-<div class="scene">【1:00 — 第二个重点：套餐必须比你单点"看起来"划算】</div>
-<div class="line">注意我的用词，是"看起来"划算，不是真的便宜到亏本。我有个做麻辣烫的客户，他的套餐是"自选8样菜+主食"，定价29.9。我问他，客人如果单点同样的东西多少钱？他说大概32块。我说差两块多你做什么套餐？</div>
-<div class="line">后来我们改了：套餐里加了一样客人单点不太会选但成本很低的东西——一个红糖糍粑，成本一块二。然后把套餐定价调到32.8。你猜怎么着？套餐销量翻了一倍。客人不傻，但他算账的方式跟你不一样。他看的是：我花32块8，吃到了看起来值40块的东西。至于你那糍粑成本多少，他根本不关心。</div>
+<div class="video-list">
+  <a href="#" class="v-item">
+    <div class="v-thumb"><div class="mini-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div></div>
+    <div class="v-text"><div class="vt">从28单到112单，一个煲仔饭店的翻身实录</div><div class="vm">4分30秒</div></div>
+  </a>
+  <a href="#" class="v-item">
+    <div class="v-thumb"><div class="mini-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div></div>
+    <div class="v-text"><div class="vt">满减做到亏本还没单？长沙米粉店老板的血泪教训</div><div class="vm">5分钟</div></div>
+  </a>
+  <a href="#" class="v-item">
+    <div class="v-thumb"><div class="mini-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div></div>
+    <div class="v-text"><div class="vt">一张小卡片让复购翻倍，每个老板都能复制</div><div class="vm">3分20秒</div></div>
+  </a>
+  <a href="#" class="v-item">
+    <div class="v-thumb"><div class="mini-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div></div>
+    <div class="v-text"><div class="vt">抖音一条视频200+团购单，重庆火锅店怎么拍的</div><div class="vm">4分钟</div></div>
+  </a>
+  <a href="#" class="v-item">
+    <div class="v-thumb"><div class="mini-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div></div>
+    <div class="v-text"><div class="vt">关了三个活动反而开始赚钱，90%的老板不懂活动叠加</div><div class="vm">5分15秒</div></div>
+  </a>
 </div>
 
-<div class="script-box">
-<div class="scene">【1:30 — 第三个重点：一个人、两个人、一家人，套餐得分开】</div>
-<div class="line">我见过太多店，套餐就一个size。一个人来吃觉得多，两个人来吃又不够，最后谁都不点。</div>
-<div class="line">去年帮一个深圳的川菜馆改菜单，我让他做了三个：<span class="time-dot"></span><strong>"一人吃饱"28.8、"两人吃好"52.8、"全家分享"88.8</strong>。名字就这么直接。然后午饭主推一人份，晚饭主推两人份，周末推全家。三个月后套餐占了他总订单的百分之四十五。</div>
-<div class="line">记住：不同的场景、不同的人数，要有不同的套餐等着他。</div>
-</div>
-
-<div class="script-box">
-<div class="scene">【2:00 — 案例一：煲仔饭店从每天3份套餐到40份】</div>
-<div class="line">回到前面说的煲仔饭店。改完套餐名字之后我们干了第二件事：把套餐图片重拍。原来那张图是老板自己用手机从正上方拍的，一团黑的。我说你这样不行。</div>
-<div class="line">我们花了两百块买了个补光灯，把煲仔饭端到窗边，侧着45度拍，拍到锅巴、拍到热气、拍到旁边的青菜和汤。然后把这张图只放在套餐页，单品页不出现。</div>
-<div class="line">上线当天，套餐点击涨了百分之五十。一个半月后，套餐日销从3份涨到40份。</div>
-</div>
-
-<div class="script-box">
-<div class="scene">【2:30 — 案例二：麻辣烫店一句话让套餐复购翻倍】</div>
-<div class="line">麻辣烫店改完套餐结构和定价之后，我们又加了一招：每份套餐里放一张小卡片，上面就手写一句话："今天的汤用筒骨熬了四个小时，趁热喝。"下面留了老板微信。</div>
-<div class="line">就这一句话，加了微信的客人复购率比没加的客人高了将近一倍。后来我们还做了个活动：套餐客人加微信下次减3块。成本3块钱换一个回头客，你算算值不值。</div>
-</div>
-
-<div class="script-box">
-<div class="scene">【3:00 — 案例三：烧烤店用"时段套餐"多赚了四千块】</div>
-<div class="line">一个做烧烤的兄弟，晚上生意好得很，但下午五点以前基本没人。我说你下午不能闲着。我们搞了一个"下午茶烧烤拼盘"——三串羊肉、两串鸡翅、一份烤馒头、一瓶饮料，定价19.9，只在14:00到17:00卖。</div>
-<div class="line">上了一个月，下午时段每天多了十几单。一个月下来多了四千多块。成本几乎没有增加，因为下午师傅本来就闲着。</div>
-</div>
-
-<div class="script-box">
-<div class="scene">【3:30 — 套餐设计三个死穴，碰一个就完蛋】</div>
-<div class="line"><strong>死穴一：</strong>套餐里全是利润低的菜。你一算账觉得自己不亏，但客人一算账觉得不划算。套餐里必须有一个高感知价值的菜品——就是那种成本不高但客人觉得贵的东西。比如排骨、牛肉、虾。哪怕只有几块，客人觉得值。</div>
-<div class="line"><strong>死穴二：</strong>套餐选项太多。一个套餐里面让客人选"主食三选一、配菜五选二、饮料四选一"，你以为是给客人自由，其实是给客人负担。套餐的核心是"不用动脑"，选项越少，下单越快。</div>
-<div class="line"><strong>死穴三：</strong>套餐和单品互相打架。你的套餐卖32，但客人自己搭配同样的东西只要30。那你这个套餐等于是在告诉客人"别点套餐"。套餐价格必须比同内容单品加起来便宜，而且要便宜到客人一眼就能看出来。</div>
-</div>
-
-<div class="script-box">
-<div class="scene">【4:00 — 今天就能改的三件事】</div>
-<div class="line"><span class="time-dot"></span><strong>第一件事：</strong>回去看你的外卖后台，找出最近30天点击最高但下单转化最低的三个菜品。把它们做成一个套餐——<strong>"老板推荐三件套"</strong>，价格比单点便宜4到6块。就今天做。</div>
-<div class="line"><span class="time-dot"></span><strong>第二件事：</strong>把你套餐的名字全部改掉。"超值套餐""豪华套餐""精选套餐"——这些词客人看了跟没看一样。改成客人一眼就懂的：<strong>"一荤一素一汤""两人烤肉组合""下午茶小食拼盘"</strong>。</div>
-<div class="line"><span class="time-dot"></span><strong>第三件事：</strong>打开你的套餐页，数一下客人看完所有套餐需要滑几下。如果超过三下，删掉一半套餐。做餐饮不是菜越多越好，是客人下单越快越好。</div>
-</div>
-
-<div class="script-box">
-<div class="scene">【4:30 — 结尾】</div>
-<div class="line">套餐没人买，不是客人没钱，是你没让客人觉得"这个就是给我的"。今天说的这些，每一条都是我踩过坑、花过钱、亏过本之后才搞明白的。你不用再踩一遍了。记住三句话：名字写明白、价格显划算、场景要分开。下周我再来讲一个话题：满减活动到底要怎么设，设多少才不亏。</div>
-</div>
-
-<div class="tip-box">
-<div class="tip-title">📋 拍摄建议</div>
-<p style="font-size:14px;color:#555;line-height:1.8;">场景：后厨或餐厅实景，不要绿幕不要演播室；穿着：日常便装，围裙也行；风格：对着镜头像跟朋友聊天，不需要逐字念稿，记住要点用自己的话讲；时长控制在4分半到5分钟；标题建议：<strong>"套餐卖不动？三个坑你可能全踩了"</strong></p>
-</div>
-
-<div class="tip-box">
-<div class="tip-title">💡 今日执行清单</div>
-<p style="font-size:14px;color:#555;line-height:1.8;">1. 打开后台，找到点击高但转化低的菜品，组合成"老板推荐三件套"<br>2. 把所有套餐名字改成客人一眼能懂的<br>3. 删掉多余的套餐，别超过5个</p>
-</div>
-
-<div class="footer-note">餐饮增长实验室 · 增长案例 · 真实可执行</div>
-</div>
+<div class="footer-note">餐饮增长实验室 · 增长案例 · 真实案例视频讲解</div>
 </body>
 </html>
