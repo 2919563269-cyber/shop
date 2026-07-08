@@ -46,9 +46,43 @@ li{margin-bottom:10px;color:#333}
 .checklist{counter-reset:step}
 strong{color:#111}
 .footer-note{text-align:center;margin-top:48px;padding-top:24px;border-top:1px solid #eee;color:#999;font-size:13px}
+
+/* 顶部标签栏 */
+.tags{
+  padding:16px 20px 8px;
+  display:flex;overflow-x:auto;
+  gap:10px;
+  -webkit-overflow-scrolling:touch;scrollbar-width:none;
+  background:#fafafa;
+  position:sticky;top:0;z-index:10;
+}
+.tags::-webkit-scrollbar{display:none}
+.tag{
+  flex-shrink:0;padding:8px 16px;
+  border-radius:20px;font-size:13px;font-weight:500;
+  color:#888;
+  border:1px solid #ddd;
+  transition:all .2s;white-space:nowrap;
+  text-decoration:none;
+}
+.tag.on,.tag:active{background:#ff6b35;color:#fff;border-color:#ff6b35}
+
 </style>
 </head>
 <body>
+
+<!-- 标签导航 -->
+<div class="tags">
+  <a href="index.html" class="tag">首页</a>
+  <a href="#" class="tag">增长案例</a>
+  <a href="#" class="tag">经营技巧</a>
+  <a href="#" class="tag">美团运营</a>
+  <a href="#" class="tag">抖音团购</a>
+  <a href="#" class="tag">外卖增长</a>
+  <a href="#" class="tag on">活动模板</a>
+  <a href="#" class="tag">老板课堂</a>
+</div>
+
 <div class="container">
 <a href="index.html" class="back">← 返回首页</a>
 <h1>为什么你的外卖店每天只有30单？</h1>
