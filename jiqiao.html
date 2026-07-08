@@ -64,6 +64,7 @@ function checkPwd(){
   var v=document.getElementById('pwdInput').value.trim();
   if(v===SITE_PWD){
     localStorage.setItem('_site_auth',SITE_PWD);
+    localStorage.setItem('_site_day',new Date().toDateString());
     document.getElementById('loginGate').classList.add('hidden');
     document.getElementById('loginErr').style.display='none';
   }else{
