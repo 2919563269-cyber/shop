@@ -7,7 +7,8 @@
 <meta http-equiv="Expires" content="0">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
 <title>增长案例 - 餐饮增长实验室</title>
-<style>*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{-webkit-text-size-adjust:100%}
 body{font-family:"Noto Sans SC",-apple-system,"Helvetica Neue",sans-serif;font-size:15px;color:#1a1a1a;background:#0f0f0f;-webkit-font-smoothing:antialiased;line-height:1.8}
 .tags{padding:14px 16px 6px;display:flex;overflow-x:auto;gap:8px;-webkit-overflow-scrolling:touch;scrollbar-width:none;background:#0f0f0f;position:sticky;top:0;z-index:10}
@@ -17,15 +18,13 @@ body{font-family:"Noto Sans SC",-apple-system,"Helvetica Neue",sans-serif;font-s
 .container{max-width:680px;margin:0 auto;padding:0 0 60px}
 .back{display:inline-flex;align-items:center;gap:6px;color:rgba(255,255,255,.5);font-size:14px;text-decoration:none;margin:20px}
 .back:hover{color:#fff}
-.video-player{width:100%;aspect-ratio:16/9;background:#1a1a1a;position:relative;display:flex;align-items:center;justify-content:center;cursor:pointer}
-.video-player .play-btn{width:64px;height:64px;background:rgba(255,107,53,.9);border-radius:50%;display:flex;align-items:center;justify-content:center;transition:transform .2s}
-.video-player .play-btn svg{width:28px;height:28px;fill:#fff;margin-left:4px}
-.video-player:active .play-btn{transform:scale(.9)}
+.video-player{width:100%;aspect-ratio:16/9;background:#000;position:relative}
+.video-player video{width:100%;height:100%;object-fit:contain}
 .video-info{padding:20px}
 .video-title{font-size:18px;font-weight:700;color:#fff;margin-bottom:6px}
-.video-meta{font-size:13px;color:rgba(255,255,255,.4);margin-bottom:20px}
+.video-meta{font-size:13px;color:rgba(255,255,255,.4);margin-bottom:12px}
 .video-list{padding:0 20px}
-.v-item{display:flex;gap:12px;padding:14px 0;border-bottom:1px solid rgba(255,255,255,.06);text-decoration:none;color:inherit}
+.v-item{display:flex;gap:12px;padding:14px 0;border-bottom:1px solid rgba(255,255,255,.06);text-decoration:none;color:inherit;cursor:pointer}
 .v-thumb{width:120px;aspect-ratio:16/9;background:#1a1a1a;border-radius:8px;flex-shrink:0;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
 .v-thumb .mini-play{width:32px;height:32px;background:rgba(255,107,53,.85);border-radius:50%;display:flex;align-items:center;justify-content:center}
 .v-thumb .mini-play svg{width:14px;height:14px;fill:#fff;margin-left:2px}
@@ -33,52 +32,9 @@ body{font-family:"Noto Sans SC",-apple-system,"Helvetica Neue",sans-serif;font-s
 .v-text .vt{font-size:14px;font-weight:500;color:#fff;line-height:1.4;margin-bottom:4px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
 .v-text .vm{font-size:12px;color:rgba(255,255,255,.35)}
 .footer-note{text-align:center;margin-top:40px;padding:20px;color:rgba(255,255,255,.2);font-size:13px}
-.login-gate{position:fixed;inset:0;background:#0f0f0f;z-index:9999;display:flex;align-items:center;justify-content:center;flex-direction:column}
-.login-gate.hidden{display:none}
-.login-box{text-align:center;padding:40px 24px;max-width:320px;width:100%}
-.login-logo{font-size:28px;font-weight:700;color:#fff;letter-spacing:.08em;margin-bottom:8px}
-.login-sub{font-size:13px;color:rgba(255,255,255,.4);margin-bottom:32px}
-.login-input{width:100%;padding:14px 18px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.15);border-radius:10px;color:#fff;font-size:16px;text-align:center;outline:none;margin-bottom:16px;letter-spacing:.2em}
-.login-input:focus{border-color:#ff6b35}
-.login-input::placeholder{color:rgba(255,255,255,.2);letter-spacing:0}
-.login-btn{width:100%;padding:14px;background:#ff6b35;color:#fff;border:none;border-radius:10px;font-size:16px;font-weight:600;cursor:pointer}
-.login-btn:active{background:#e55a2b}
-.login-err{color:#ff4444;font-size:13px;margin-top:12px;display:none}
 </style>
 </head>
 <body>
-
-<div class="login-gate" id="loginGate">
-  <div class="login-box">
-    <div class="login-logo">餐饮增长实验室</div>
-    <div class="login-sub">请输入访问密码</div>
-    <input type="password" class="login-input" id="pwdInput" placeholder="输入密码" onkeydown="if(event.key==='Enter')checkPwd()">
-    <button class="login-btn" onclick="checkPwd()">进入</button>
-    <div class="login-err" id="loginErr">密码错误，请重试</div>
-  </div>
-</div>
-<script>
-var WEEK_PWDS=['177','277','377','477','577','677','777'];
-var SITE_PWD=WEEK_PWDS[new Date().getDay()===0?6:new Date().getDay()-1];
-(function(){
-  if(localStorage.getItem('_site_auth')===SITE_PWD){
-    var g=document.getElementById('loginGate');
-    if(g)g.classList.add('hidden');
-  }
-})();
-function checkPwd(){
-  var v=document.getElementById('pwdInput').value.trim();
-  if(v===SITE_PWD){
-    localStorage.setItem('_site_auth',SITE_PWD);
-    localStorage.setItem('_site_day',new Date().toDateString());
-    document.getElementById('loginGate').classList.add('hidden');
-    document.getElementById('loginErr').style.display='none';
-  }else{
-    document.getElementById('loginErr').style.display='block';
-    document.getElementById('pwdInput').value='';
-  }
-}
-</script>
 <div class="tags">
   <a href="knowledge.html" class="tag">活动模板</a>
   <a href="cases.html" class="tag on">增长案例</a>
@@ -89,40 +45,49 @@ function checkPwd(){
   <a href="ketang.html" class="tag">老板课堂</a>
 </div>
 
-<a href="knowledge.html" class="back">← 返回</a>
+<a href="knowledge.html" class="back">← 返回知识库</a>
 
 <div style="padding:10px 20px 0;color:rgba(255,255,255,.5);font-size:12px;text-align:center;">⏳ 视频时间较长，请耐心观看</div>
-<div class="video-player"><video src="images/video1.mp4" controls playsinline webkit-playsinline x5-video-player-type="h5" x5-video-orientation="portraint" preload="none" style="width:100%;height:100%;object-fit:contain;background:#000;" poster="images/chef-bg.jpg"></video></div>
+<div class="video-player">
+  <video id="mainVideo" src="images/video1.mp4" controls playsinline webkit-playsinline preload="none" poster="images/chef-bg.jpg"></video>
+</div>
+
 <div class="video-info">
-  <div class="video-title">为什么套餐没人买？三个坑你可能全踩了</div><div style="display:flex;gap:8px;margin-top:8px;"><span style="padding:3px 10px;background:rgba(255,107,53,.15);color:#ff6b35;border-radius:4px;font-size:11px;font-weight:500;">团购</span><span style="padding:3px 10px;background:rgba(255,255,255,.06);color:rgba(255,255,255,.5);border-radius:4px;font-size:11px;">套餐设计</span><span style="padding:3px 10px;background:rgba(255,255,255,.06);color:rgba(255,255,255,.5);border-radius:4px;font-size:11px;">真实案例</span></div>
-  <div class="video-meta">2分05秒 · 3个真实案例 · 今天就能改</div>
+  <div class="video-title" id="videoTitle">为什么套餐没人买？三个坑你可能全踩了</div>
+  <div class="video-meta" id="videoMeta">2分05秒 · 3个真实案例 · 今天就能改</div>
+  <div class="video-tags" id="videoTags" style="display:flex;gap:8px;">
+    <span style="padding:3px 10px;background:rgba(255,107,53,.15);color:#ff6b35;border-radius:4px;font-size:11px;font-weight:500;">团购</span>
+    <span style="padding:3px 10px;background:rgba(255,255,255,.06);color:rgba(255,255,255,.5);border-radius:4px;font-size:11px;">套餐设计</span>
+    <span style="padding:3px 10px;background:rgba(255,255,255,.06);color:rgba(255,255,255,.5);border-radius:4px;font-size:11px;">真实案例</span>
+  </div>
 </div>
 
 <div class="video-list">
-  <a href="#" class="v-item">
+  <div class="v-item" onclick="switchVideo('images/video2.mp4','外卖店三招七天从16单拉爆到199单实战教学','9分28秒 · 实战教学 · 外卖运营','<span style=padding:3px 10px;background:rgba(255,107,53,.15);color:#ff6b35;border-radius:4px;font-size:11px;font-weight:500;>外卖运营</span>');scrollToTop()">
     <div class="v-thumb"><div class="mini-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div></div>
-    <div class="v-text"><div class="vt">从28单到112单，一个煲仔饭店的翻身实录</div><div class="vm">4分30秒</div></div>
-  </a>
-  <a href="#" class="v-item">
+    <div class="v-text"><div class="vt">外卖店三招七天从16单拉爆到199单实战教学</div><div class="vm">9分28秒 · 外卖运营</div></div>
+  </div>
+  <div class="v-item" onclick="switchVideo('images/video1.mp4','为什么套餐没人买？三个坑你可能全踩了','2分05秒 · 3个真实案例 · 今天就能改','<span style=padding:3px 10px;background:rgba(255,107,53,.15);color:#ff6b35;border-radius:4px;font-size:11px;font-weight:500;>团购</span><span style=padding:3px 10px;background:rgba(255,255,255,.06);color:rgba(255,255,255,.5);border-radius:4px;font-size:11px;margin-left:8px;>套餐设计</span><span style=padding:3px 10px;background:rgba(255,255,255,.06);color:rgba(255,255,255,.5);border-radius:4px;font-size:11px;margin-left:8px;>真实案例</span>');scrollToTop()">
     <div class="v-thumb"><div class="mini-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div></div>
-    <div class="v-text"><div class="vt">满减做到亏本还没单？长沙米粉店老板的血泪教训</div><div class="vm">5分钟</div></div>
-  </a>
-  <a href="#" class="v-item">
-    <div class="v-thumb"><div class="mini-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div></div>
-    <div class="v-text"><div class="vt">一张小卡片让复购翻倍，每个老板都能复制</div><div class="vm">3分20秒</div></div>
-  </a>
-  <a href="#" class="v-item">
-    <div class="v-thumb"><div class="mini-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div></div>
-    <div class="v-text"><div class="vt">抖音一条视频200+团购单，重庆火锅店怎么拍的</div><div class="vm">4分钟</div></div>
-  </a>
-  <a href="#" class="v-item">
-    <div class="v-thumb"><div class="mini-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div></div>
-    <div class="v-text"><div class="vt">关了三个活动反而开始赚钱，90%的老板不懂活动叠加</div><div class="vm">5分15秒</div></div>
-  </a>
+    <div class="v-text"><div class="vt">为什么套餐没人买？三个坑你可能全踩了</div><div class="vm">2分05秒 · 团购</div></div>
+  </div>
 </div>
 
 <div class="footer-note">餐饮增长实验室 · 增长案例 · 真实案例视频讲解</div>
 
+<script>
+function switchVideo(src, title, meta, tags) {
+  var v = document.getElementById('mainVideo');
+  v.src = src;
+  v.load();
+  v.play();
+  document.getElementById('videoTitle').textContent = title;
+  document.getElementById('videoMeta').textContent = meta;
+  document.getElementById('videoTags').innerHTML = tags;
+}
+function scrollToTop() {
+  window.scrollTo({top:0,behavior:'smooth'});
+}
 </script>
 </body>
 </html>
