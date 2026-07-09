@@ -18,16 +18,23 @@ body{font-family:"Noto Sans SC",-apple-system,"Helvetica Neue",sans-serif;font-s
 .container{max-width:680px;margin:0 auto;padding:0 0 60px}
 .back{display:inline-flex;align-items:center;gap:6px;color:rgba(255,255,255,.5);font-size:14px;text-decoration:none;margin:20px}
 .back:hover{color:#fff}
-.video-player{width:100%;aspect-ratio:16/9;background:#000;position:relative}
+
+/* 分类标签 */
+.cat-tags{padding:0 20px 12px;display:flex;gap:8px;flex-wrap:wrap}
+.ctag{padding:6px 14px;border-radius:20px;font-size:12px;font-weight:500;cursor:pointer;border:1px solid rgba(255,255,255,.15);color:rgba(255,255,255,.5);transition:all .2s}
+.ctag.on,.ctag:active{background:#ff6b35;color:#fff;border-color:#ff6b35}
+
+.video-player{width:100%;aspect-ratio:16/9;background:#000}
 .video-player video{width:100%;height:100%;object-fit:contain}
-.video-info{padding:20px}
-.video-title{font-size:18px;font-weight:700;color:#fff;margin-bottom:6px}
-.video-meta{font-size:13px;color:rgba(255,255,255,.4);margin-bottom:12px}
+.video-info{padding:16px 20px}
+.video-title{font-size:18px;font-weight:700;color:#fff;margin-bottom:4px}
+.video-meta{font-size:13px;color:rgba(255,255,255,.4)}
+
 .video-list{padding:0 20px}
-.v-item{display:flex;gap:12px;padding:14px 0;border-bottom:1px solid rgba(255,255,255,.06);text-decoration:none;color:inherit;cursor:pointer}
-.v-thumb{width:120px;aspect-ratio:16/9;background:#1a1a1a;border-radius:8px;flex-shrink:0;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
-.v-thumb .mini-play{width:32px;height:32px;background:rgba(255,107,53,.85);border-radius:50%;display:flex;align-items:center;justify-content:center}
-.v-thumb .mini-play svg{width:14px;height:14px;fill:#fff;margin-left:2px}
+.v-item{display:flex;gap:12px;padding:12px 0;border-bottom:1px solid rgba(255,255,255,.06);cursor:pointer}
+.v-thumb{width:120px;height:68px;background:#1a1a1a;border-radius:8px;flex-shrink:0;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.v-thumb .mini-play{width:28px;height:28px;background:rgba(255,107,53,.85);border-radius:50%;display:flex;align-items:center;justify-content:center}
+.v-thumb .mini-play svg{width:12px;height:12px;fill:#fff;margin-left:1px}
 .v-text{flex:1;min-width:0}
 .v-text .vt{font-size:14px;font-weight:500;color:#fff;line-height:1.4;margin-bottom:4px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
 .v-text .vm{font-size:12px;color:rgba(255,255,255,.35)}
@@ -47,7 +54,15 @@ body{font-family:"Noto Sans SC",-apple-system,"Helvetica Neue",sans-serif;font-s
 
 <a href="knowledge.html" class="back">← 返回知识库</a>
 
-<div style="padding:10px 20px 0;color:rgba(255,255,255,.5);font-size:12px;text-align:center;">⏳ 视频时间较长，请耐心观看</div>
+<!-- 分类标签 -->
+<div class="cat-tags">
+  <span class="ctag on" onclick="filterVideos('all',this)">全部</span>
+  <span class="ctag" onclick="filterVideos('团购',this)">团购</span>
+  <span class="ctag" onclick="filterVideos('外卖运营',this)">外卖运营</span>
+  <span class="ctag" onclick="filterVideos('套餐设计',this)">套餐设计</span>
+</div>
+
+<div style="padding:8px 20px 0;color:rgba(255,255,255,.4);font-size:12px;">⏳ 视频时间较长，请耐心观看</div>
 <div class="video-player">
   <video id="mainVideo" src="images/video1.mp4" controls playsinline webkit-playsinline preload="none"></video>
 </div>
@@ -55,19 +70,14 @@ body{font-family:"Noto Sans SC",-apple-system,"Helvetica Neue",sans-serif;font-s
 <div class="video-info">
   <div class="video-title" id="videoTitle">为什么套餐没人买？三个坑你可能全踩了</div>
   <div class="video-meta" id="videoMeta">2分05秒 · 3个真实案例 · 今天就能改</div>
-  <div class="video-tags" id="videoTags" style="display:flex;gap:8px;">
-    <span style="padding:3px 10px;background:rgba(255,107,53,.15);color:#ff6b35;border-radius:4px;font-size:11px;font-weight:500;">团购</span>
-    <span style="padding:3px 10px;background:rgba(255,255,255,.06);color:rgba(255,255,255,.5);border-radius:4px;font-size:11px;">套餐设计</span>
-    <span style="padding:3px 10px;background:rgba(255,255,255,.06);color:rgba(255,255,255,.5);border-radius:4px;font-size:11px;">真实案例</span>
-  </div>
 </div>
 
-<div class="video-list">
-  <div class="v-item" onclick="switchVideo('images/video2.mp4','外卖店三招七天从16单拉爆到199单实战教学','9分28秒 · 实战教学 · 外卖运营','<span style=padding:3px 10px;background:rgba(255,107,53,.15);color:#ff6b35;border-radius:4px;font-size:11px;font-weight:500;>外卖运营</span>');scrollToTop()">
+<div class="video-list" id="videoList">
+  <div class="v-item" data-cat="外卖运营" onclick="switchVideo('images/video2.mp4','外卖店三招七天从16单拉爆到199单实战教学','9分28秒 · 实战教学 · 外卖运营');scrollToTop()">
     <div class="v-thumb"><div class="mini-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div></div>
     <div class="v-text"><div class="vt">外卖店三招七天从16单拉爆到199单实战教学</div><div class="vm">9分28秒 · 外卖运营</div></div>
   </div>
-  <div class="v-item" onclick="switchVideo('images/video1.mp4','为什么套餐没人买？三个坑你可能全踩了','2分05秒 · 3个真实案例 · 今天就能改','<span style=padding:3px 10px;background:rgba(255,107,53,.15);color:#ff6b35;border-radius:4px;font-size:11px;font-weight:500;>团购</span><span style=padding:3px 10px;background:rgba(255,255,255,.06);color:rgba(255,255,255,.5);border-radius:4px;font-size:11px;margin-left:8px;>套餐设计</span><span style=padding:3px 10px;background:rgba(255,255,255,.06);color:rgba(255,255,255,.5);border-radius:4px;font-size:11px;margin-left:8px;>真实案例</span>');scrollToTop()">
+  <div class="v-item" data-cat="团购 套餐设计" onclick="switchVideo('images/video1.mp4','为什么套餐没人买？三个坑你可能全踩了','2分05秒 · 3个真实案例 · 今天就能改');scrollToTop()">
     <div class="v-thumb"><div class="mini-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div></div>
     <div class="v-text"><div class="vt">为什么套餐没人买？三个坑你可能全踩了</div><div class="vm">2分05秒 · 团购</div></div>
   </div>
@@ -76,17 +86,27 @@ body{font-family:"Noto Sans SC",-apple-system,"Helvetica Neue",sans-serif;font-s
 <div class="footer-note">餐饮增长实验室 · 增长案例 · 真实案例视频讲解</div>
 
 <script>
-function switchVideo(src, title, meta, tags) {
+function switchVideo(src, title, meta) {
   var v = document.getElementById('mainVideo');
   v.src = src;
   v.load();
   v.play();
   document.getElementById('videoTitle').textContent = title;
   document.getElementById('videoMeta').textContent = meta;
-  document.getElementById('videoTags').innerHTML = tags;
 }
 function scrollToTop() {
   window.scrollTo({top:0,behavior:'smooth'});
+}
+function filterVideos(cat, el) {
+  document.querySelectorAll('.ctag').forEach(function(t){t.classList.remove('on')});
+  el.classList.add('on');
+  document.querySelectorAll('.v-item').forEach(function(item){
+    if(cat==='all' || item.dataset.cat.indexOf(cat)>=0) {
+      item.style.display='flex';
+    } else {
+      item.style.display='none';
+    }
+  });
 }
 </script>
 </body>
