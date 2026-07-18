@@ -15,7 +15,6 @@ body{font-family:"Noto Sans SC",-apple-system,"Helvetica Neue",sans-serif;font-s
 .tags::-webkit-scrollbar{display:none}
 .tag{flex-shrink:0;padding:8px 16px;border-radius:20px;font-size:13px;font-weight:500;color:rgba(255,255,255,.5);border:1px solid rgba(255,255,255,.2);transition:all .2s;white-space:nowrap;text-decoration:none}
 .tag.on,.tag:active{background:#ff6b35;color:#fff;border-color:#ff6b35}
-.container{max-width:680px;margin:0 auto;padding:0 0 60px}
 .back{display:inline-flex;align-items:center;gap:6px;color:rgba(255,255,255,.5);font-size:14px;text-decoration:none;margin:20px}
 .back:hover{color:#fff}
 
@@ -23,7 +22,7 @@ body{font-family:"Noto Sans SC",-apple-system,"Helvetica Neue",sans-serif;font-s
 .ctag{padding:6px 14px;border-radius:20px;font-size:12px;font-weight:500;cursor:pointer;border:1px solid rgba(255,255,255,.15);color:rgba(255,255,255,.5);transition:all .2s}
 .ctag.on,.ctag:active{background:#ff6b35;color:#fff;border-color:#ff6b35}
 
-.video-player{width:100%;aspect-ratio:16/9;background:#111}
+.video-player{width:100%;aspect-ratio:16/9;background:#000}
 .video-player video{width:100%;height:100%;object-fit:contain}
 .video-info{padding:16px 20px}
 .video-title{font-size:18px;font-weight:700;color:#fff;margin-bottom:4px}
@@ -31,9 +30,9 @@ body{font-family:"Noto Sans SC",-apple-system,"Helvetica Neue",sans-serif;font-s
 
 .video-list{padding:0 20px}
 .v-item{display:flex;gap:12px;padding:12px 0;border-bottom:1px solid rgba(255,255,255,.06);cursor:pointer}
-.v-thumb{width:120px;height:68px;border-radius:8px;flex-shrink:0;overflow:hidden;position:relative;background:#111}
-.v-thumb video{width:100%;height:100%;object-fit:cover;pointer-events:none}
-.v-thumb .mini-play{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,.3)}
+.v-thumb{width:120px;height:68px;border-radius:8px;flex-shrink:0;overflow:hidden;position:relative;background:#1a1a1a}
+.v-thumb canvas{width:100%;height:100%;object-fit:cover}
+.v-thumb .mini-play{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,.25)}
 .v-thumb .mini-play .play-icon{width:28px;height:28px;background:rgba(255,107,53,.85);border-radius:50%;display:flex;align-items:center;justify-content:center}
 .v-thumb .mini-play .play-icon svg{width:12px;height:12px;fill:#fff;margin-left:1px}
 .v-text{flex:1;min-width:0}
@@ -72,16 +71,16 @@ body{font-family:"Noto Sans SC",-apple-system,"Helvetica Neue",sans-serif;font-s
 </div>
 
 <div class="video-list" id="videoList">
-  <div class="v-item" data-cat="外卖运营" onclick="switchVideo('images/video2.mp4','外卖店三招七天从16单拉爆到199单实战教学','9分28秒 · 外卖运营');scrollToTop()">
+  <div class="v-item" data-cat="外卖运营" data-src="images/video2.mp4" data-title="外卖店三招七天从16单拉爆到199单实战教学" data-meta="9分28秒 · 外卖运营" onclick="switchVideo(this.dataset.src,this.dataset.title,this.dataset.meta);scrollToTop()">
     <div class="v-thumb">
-      <video src="images/video2.mp4" preload="metadata" muted playsinline></video>
+      <canvas class="thumb-canvas" data-video="images/video2.mp4"></canvas>
       <div class="mini-play"><div class="play-icon"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div></div>
     </div>
     <div class="v-text"><div class="vt">外卖店三招七天从16单拉爆到199单实战教学</div><div class="vm">9分28秒 · 外卖运营</div></div>
   </div>
-  <div class="v-item" data-cat="团购 套餐设计" onclick="switchVideo('images/video1.mp4','为什么套餐没人买？三个坑你可能全踩了','2分05秒 · 团购');scrollToTop()">
+  <div class="v-item" data-cat="团购 套餐设计" data-src="images/video1.mp4" data-title="为什么套餐没人买？三个坑你可能全踩了" data-meta="2分05秒 · 团购" onclick="switchVideo(this.dataset.src,this.dataset.title,this.dataset.meta);scrollToTop()">
     <div class="v-thumb">
-      <video src="images/video1.mp4" preload="metadata" muted playsinline></video>
+      <canvas class="thumb-canvas" data-video="images/video1.mp4"></canvas>
       <div class="mini-play"><div class="play-icon"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div></div>
     </div>
     <div class="v-text"><div class="vt">为什么套餐没人买？三个坑你可能全踩了</div><div class="vm">2分05秒 · 团购</div></div>
@@ -109,7 +108,42 @@ function filterVideos(cat, el) {
     item.style.display = (cat==='all' || item.dataset.cat.indexOf(cat)>=0) ? 'flex' : 'none';
   });
 }
+
+// 截取视频首帧作为缩略图
+function captureThumb(canvas, videoSrc) {
+  var v = document.createElement('video');
+  v.src = videoSrc;
+  v.crossOrigin = 'anonymous';
+  v.preload = 'metadata';
+  v.muted = true;
+  v.playsInline = true;
+  v.addEventListener('loadeddata', function() {
+    v.currentTime = 0.5;
+  });
+  v.addEventListener('seeked', function() {
+    var ctx = canvas.getContext('2d');
+    canvas.width = 240;
+    canvas.height = 136;
+    ctx.drawImage(v, 0, 0, canvas.width, canvas.height);
+    v.remove();
+  });
+  v.addEventListener('error', function() {
+    // 加载失败显示纯色背景
+    var ctx = canvas.getContext('2d');
+    canvas.width = 240;
+    canvas.height = 136;
+    ctx.fillStyle = '#1a1a1a';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    v.remove();
+  });
+}
+
+// 页面加载时截取所有缩略图
+document.addEventListener('DOMContentLoaded', function() {
+  document.querySelectorAll('.thumb-canvas').forEach(function(canvas) {
+    captureThumb(canvas, canvas.dataset.video);
+  });
+});
 </script>
-<!-- v0709-02 -->
 </body>
 </html>
