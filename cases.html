@@ -27,9 +27,9 @@ body{font-family:"Noto Sans SC",-apple-system,"Helvetica Neue",sans-serif;font-s
 .video-meta{font-size:13px;color:rgba(255,255,255,.4)}
 .video-list{padding:0 20px}
 .v-item{display:flex;gap:12px;padding:12px 0;border-bottom:1px solid rgba(255,255,255,.06);cursor:pointer}
-.v-thumb{width:120px;height:68px;border-radius:8px;flex-shrink:0;overflow:hidden;position:relative;background:#1a1a2e}
+.v-thumb{width:120px;height:68px;border-radius:8px;flex-shrink:0;overflow:hidden;position:relative}
 .v-thumb img{width:100%;height:100%;object-fit:cover}
-.v-thumb .play-overlay{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;pointer-events:none}
+.v-thumb .play-overlay{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,.2)}
 .v-thumb .play-icon{width:28px;height:28px;background:rgba(255,107,53,.85);border-radius:50%;display:flex;align-items:center;justify-content:center}
 .v-thumb .play-icon svg{width:12px;height:12px;fill:#fff;margin-left:1px}
 .v-text{flex:1;min-width:0}
@@ -56,40 +56,34 @@ body{font-family:"Noto Sans SC",-apple-system,"Helvetica Neue",sans-serif;font-s
   <span class="ctag" onclick="filterVideos('套餐设计',this)">套餐设计</span>
 </div>
 <div class="video-player">
-  <video id="mainVideo" src="images/video1.mp4" controls playsinline webkit-playsinline preload="metadata"></video>
+  <video id="mainVideo" src="images/video1.mp4" controls playsinline webkit-playsinline preload="none" poster="images/thumb1.jpg"></video>
 </div>
 <div class="video-info">
   <div class="video-title" id="videoTitle">为什么套餐没人买？三个坑你可能全踩了</div>
   <div class="video-meta" id="videoMeta">2分05秒 · 3个真实案例</div>
 </div>
 <div class="video-list" id="videoList">
-  <div class="v-item" data-cat="外卖运营" data-src="images/video2.mp4" data-title="外卖店三招七天从16单拉爆到199单实战教学" data-meta="9分28秒 · 外卖运营" onclick="switchVideo(this.dataset.src,this.dataset.title,this.dataset.meta);scrollToTop()">
-    <div class="v-thumb" id="thumb2"></div>
+  <div class="v-item" data-cat="外卖运营" data-src="images/video2.mp4" data-title="外卖店三招七天从16单拉爆到199单实战教学" data-meta="9分28秒 · 外卖运营" data-poster="images/thumb2.jpg" onclick="switchVideo(this.dataset.src,this.dataset.title,this.dataset.meta,this.dataset.poster);scrollToTop()">
+    <div class="v-thumb"><img src="images/thumb2.jpg" alt="外卖运营"><div class="play-overlay"><div class="play-icon"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div></div></div>
     <div class="v-text"><div class="vt">外卖店三招七天从16单拉爆到199单实战教学</div><div class="vm">9分28秒 · 外卖运营</div></div>
   </div>
-  <div class="v-item" data-cat="团购 套餐设计" data-src="images/video1.mp4" data-title="为什么套餐没人买？三个坑你可能全踩了" data-meta="2分05秒 · 团购" onclick="switchVideo(this.dataset.src,this.dataset.title,this.dataset.meta);scrollToTop()">
-    <div class="v-thumb" id="thumb1"></div>
+  <div class="v-item" data-cat="团购 套餐设计" data-src="images/video1.mp4" data-title="为什么套餐没人买？三个坑你可能全踩了" data-meta="2分05秒 · 团购" data-poster="images/thumb1.jpg" onclick="switchVideo(this.dataset.src,this.dataset.title,this.dataset.meta,this.dataset.poster);scrollToTop()">
+    <div class="v-thumb"><img src="images/thumb1.jpg" alt="团购"><div class="play-overlay"><div class="play-icon"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div></div></div>
     <div class="v-text"><div class="vt">为什么套餐没人买？三个坑你可能全踩了</div><div class="vm">2分05秒 · 团购</div></div>
   </div>
 </div>
 <div class="footer-note">餐饮增长实验室 · 增长案例</div>
 <script>
-var VIDEOS = [
-  { id:'thumb1', src:'images/video1.mp4' },
-  { id:'thumb2', src:'images/video2.mp4' }
-];
-
-function switchVideo(src, title, meta) {
+function switchVideo(src, title, meta, poster) {
   var v = document.getElementById('mainVideo');
+  v.poster = poster;
   v.src = src;
   v.load();
   v.play();
   document.getElementById('videoTitle').textContent = title;
   document.getElementById('videoMeta').textContent = meta;
 }
-function scrollToTop() {
-  window.scrollTo({top:0,behavior:'smooth'});
-}
+function scrollToTop(){window.scrollTo({top:0,behavior:'smooth'})}
 function filterVideos(cat, el) {
   document.querySelectorAll('.ctag').forEach(function(t){t.classList.remove('on')});
   el.classList.add('on');
@@ -97,56 +91,6 @@ function filterVideos(cat, el) {
     item.style.display = (cat==='all' || item.dataset.cat.indexOf(cat)>=0) ? 'flex' : 'none';
   });
 }
-
-// 轮询截取缩略图
-VIDEOS.forEach(function(info) {
-  var container = document.getElementById(info.id);
-  var v = document.createElement('video');
-  v.src = info.src;
-  v.muted = true;
-  v.playsInline = true;
-  v.preload = 'auto';
-  v.style.display = 'none';
-  v.crossOrigin = 'anonymous';
-  document.body.appendChild(v);
-
-  var canvas = document.createElement('canvas');
-  canvas.width = 240;
-  canvas.height = 136;
-  canvas.style.cssText = 'width:100%;height:100%;object-fit:cover;';
-  container.appendChild(canvas);
-
-  var overlay = document.createElement('div');
-  overlay.className = 'play-overlay';
-  overlay.innerHTML = '<div class="play-icon"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>';
-  container.appendChild(overlay);
-
-  function tryCapture() {
-    if (v.readyState >= 2) {
-      var ctx = canvas.getContext('2d');
-      v.currentTime = 1;
-    }
-  }
-
-  v.addEventListener('seeked', function() {
-    var ctx = canvas.getContext('2d');
-    try { ctx.drawImage(v, 0, 0, 240, 136); } catch(e) {}
-  });
-
-  v.addEventListener('loadedmetadata', tryCapture);
-  v.addEventListener('canplay', tryCapture);
-
-  // 3秒后还没加载出来就用备用方案
-  setTimeout(function() {
-    if (canvas.toDataURL().length < 100) {
-      var ctx = canvas.getContext('2d');
-      var grad = ctx.createLinearGradient(0, 0, 240, 136);
-      grad.addColorStop(0, '#2a1a3a'); grad.addColorStop(1, '#1a2a3a');
-      ctx.fillStyle = grad;
-      ctx.fillRect(0, 0, 240, 136);
-    }
-  }, 4000);
-});
 </script>
 </body>
 </html>
